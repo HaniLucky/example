@@ -34,6 +34,14 @@ public class UserController {
 	public String saveUser(){
 		int i = userService.saveUser();
 		return "";
+	}
+	
+	@RequestMapping(value = "/item")
+	public String item(Model model){
+		/*List<User> user = userService.selectAllUser();
+		System.err.println(user.get(0).toString());
+		model.addAttribute("item", user);*/
+		return "item";
 		
 	}
 
