@@ -1,16 +1,26 @@
 <!doctype html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		
+		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+		</script>
+		<script>
+			$(document).ready(function(){
+			  $("button").click(function(){
+				// $.get("http://127.0.0.1:8080/app",function(data,status){
+				$.get("/api/app",function(data,status){
+				  alert("数据：" + data + "\n状态：" + status);
+				});
+			  });
+			});
+		</script>
 	</head>
 
 	<body>
-	<div>asdf</div>
-		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
-</script>
-	</body>
+
+<button>向页面发送 HTTP GET(跨域)请求，然后获得返回的结果</button>
+
+</body>
 
 </html>
