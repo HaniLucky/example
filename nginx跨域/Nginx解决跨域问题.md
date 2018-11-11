@@ -37,3 +37,41 @@
 </html>
 ```
 
+##### ngxin配置
+
+```json
+#前端工程静态资源服务器(同时使用同源策略解决跨域问题)
+	server {
+		#访问端口(页面访问端口)
+        listen 8081;
+        server_name localhost;
+
+
+        error_page 500 502 503 504 /50x.html;
+			location = /50x.html {
+			root html;
+        }
+		
+		
+        location / {
+			# 前端工程根目录
+			root C:\Users\Covet\Desktop\origin-view;
+			index index.html;
+        }
+		
+		#代理路径 地址是以spi开头的 ‘/api开头的都走这个代理’
+		# 将前端访问的后台端口变更为‘前台id:前台端口/api/xxx/xxx’
+		location /api {
+			#正则表达式匹配路径
+			rewrite  ^.+api/?(.*)$ /$1 break;
+			include  uwsgi_params;
+			#后端端口(后端最终访问的端口)
+			proxy_pass   http://127.0.0.1:8080;
+		}
+		
+        location @router {
+        rewrite ^.*$ /index.html last;
+        }
+	}
+```
+
