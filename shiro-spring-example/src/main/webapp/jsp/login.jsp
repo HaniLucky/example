@@ -7,7 +7,7 @@
 <title>login</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/user/login" method="post">
+	<form action="${pageContext.request.contextPath}/user/dologin" method="post">
 		账号:<input id="username" name="username" type="text"/>
 		密码:<input id="password" name="password" type="password"/>
 		<button type="submit">登录</button>
