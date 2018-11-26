@@ -23,9 +23,4 @@ public class TestController {
 		return "index";
 	}
 
-	@RequestMapping(value = "user", method = RequestMethod.GET)
-	public List<User> users() {
-		return userService.users();
-	}
-
 }
