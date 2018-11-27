@@ -31,15 +31,15 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(User user) {
-		List<User>  userList = userService.login(user);
-		if (!CollectionUtils.isEmpty(userList)) {
-			return "success";
-		} else {
-			return "fail";
-		}
-	}
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	public String login(User user) {
+//		List<User>  userList = userService.login(user);
+//		if (!CollectionUtils.isEmpty(userList)) {
+//			return "success";
+//		} else {
+//			return "fail";
+//		}
+//	}
 	
 	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
 	public String page(@PathVariable String page){
@@ -47,16 +47,16 @@ public class UserController {
 	}
 
 	
-	@RequestMapping("/dologin") //url
+	@RequestMapping("/login") //url
 	public String dologin(User user, Model model){
 		String info = loginUser(user);
 		if (!"SUCC".equals(info)) {
 			model.addAttribute("failMsg", "用户不存在或密码错误！");
-			return "/jsp/fail";
+			return "fail";
 		}else{
 			model.addAttribute("successMsg", "登陆成功！");//返回到页面说夹带的参数
 			model.addAttribute("name", user.getUsername());
-			return "/jsp/success";//返回的页面
+			return "success";//返回的页面
 		}
 	  }
 	 
@@ -73,9 +73,11 @@ public class UserController {
 	}
 	 
 	private String loginUser(User user) {
-	 		if (isRelogin(user)) return "SUCC"; // 如果已经登陆，无需重新登录
-	 		
-	 		return shiroLogin(user); // 调用shiro的登陆验证
+		if (isRelogin(user)) {
+			return "SUCC";
+		} // 如果已经登陆，无需重新登录
+
+		return shiroLogin(user); // 调用shiro的登陆验证
 	}
 	private String shiroLogin(User user) {
 			// 组装token，包括客户公司名称、简称、客户编号、用户名称；密码

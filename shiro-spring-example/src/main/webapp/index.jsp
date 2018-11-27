@@ -7,6 +7,10 @@
 <title>index</title>
 </head>
 <body>
-index
+<form action="${pageContext.request.contextPath}/user/login" method="post">
+		账号:<input id="username" name="username" type="text"/>
+		密码:<input id="password" name="password" type="password"/>
+		<button type="submit">登录</button>
+	</form>
 </body>
 </html>

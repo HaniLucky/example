@@ -12,5 +12,9 @@
 	<select id="login" parameterType="com.xxx.covet.pojo.User"
 		resultMap="userResultMap">
 		SELECT * FROM sys_users WHERE username = #{username} AND password = #{password}
-		</select>
+	</select>
+		
+	<select id="queryUserByUsername" parameterType="java.lang.String" resultMap="userResultMap">
+		SELECT * FROM sys_users WHERE username = #{username}
+	</select>
 </mapper>
