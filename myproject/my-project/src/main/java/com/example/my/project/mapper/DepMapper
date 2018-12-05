@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper>
+    <resultMap id="depResultMap" type="com.example.my.project.vo.Dep">
+        <result property="uuid" column="UUID"></result>
+        <result property="name" column="NAME"></result>
+        <result property="tele" column="TELE"></result>
+    </resultMap>
+    <select id="queryDepList" resultMap="depResultMap">
+        SELECT UUID,NAME,TELE FROM DEP
+    </select>
+</mapper>
