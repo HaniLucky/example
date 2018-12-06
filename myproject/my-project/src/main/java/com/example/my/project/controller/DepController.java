@@ -1,9 +1,7 @@
 package com.example.my.project.controller;
 
-import com.example.my.project.common.Result;
 import com.example.my.project.service.DepService;
 import com.example.my.project.vo.Dep;
-import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,5 +26,10 @@ public class DepController {
         /*List<Dep> depList = depService.queryDepList();
         return new Result("200", "请求成功", depList);*/
         return  depService.queryDepList(name,tele);
+    }
+
+    @RequestMapping(value = "/add")
+    public void add() {
+        System.out.println("ok");
     }
 }

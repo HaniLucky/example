@@ -70,7 +70,7 @@ $(function(){
 		var formdata=$('#editForm').serializeJSON();		
 		
 		$.ajax({
-			url:name+'_'+method+'.action'+saveParam,
+			url:"http://127.0.0.1:8080"+name+'/'+method+saveParam,
 			data:formdata,
 			dataType:'json',
 			type:'post',

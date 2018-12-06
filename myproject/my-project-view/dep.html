@@ -27,19 +27,21 @@
 </head>
 <body>
 <div class="easyui-panel">
+	<!-- 表头查询框 -->
 <form id="searchForm">
 	名称：<input name="name" >
 	电话：<input name="tele" >
-
 	<button type="button" id="btnSearch">查询</button>
 </form>
 </div>
+<!-- 数据列表 -->
 <table id="grid"></table>
+
+<!-- ADD弹出框 -->
 <div id="editWindow" class="easyui-window" title="部门编辑" 
 	style="width: 300px;height: 200px" data-options="closed:true">
 	<form id="editForm">
 	<input name="t.uuid" type="hidden"> 
-
 		<table>
 			<tr>
 				<td>名称</td><td><input name="t.name"> </td>
@@ -56,12 +58,6 @@
 	$(function(){
 		$("#grid").datagrid({
 			 url :'http://127.0.0.1:8080/dep/all',
-			 // url :'dep.json',
-			/*columns:[[
-				{filed:'uuid',title:"部门编号",width:400},
-				{filed:'name',title:"部门名称",width:400},
-				{filed:'tele',title:"部门电话",width:400}
-			]],*/
 			columns:columns,
 			singleSelect:true
 		})
