@@ -22,8 +22,11 @@ public class DepController {
     private DepService depService;
 
     @RequestMapping(value = "/all")
-    public Result allDep() {
-        List<Dep> depList = depService.queryDepList();
-        return new Result("200", "请求成功", depList);
+    public /*Result*/ List<Dep> allDep(String name,String tele) {
+        System.out.println(name);
+        System.out.println(tele);
+        /*List<Dep> depList = depService.queryDepList();
+        return new Result("200", "请求成功", depList);*/
+        return  depService.queryDepList(name,tele);
     }
 }

@@ -17,7 +17,7 @@ public class DepServiceImpl implements DepService {
     private DepMapper depMapper;
 
     @Override
-    public List<Dep> queryDepList() {
-        return depMapper.queryDepList();
+    public List<Dep> queryDepList(String name, String tele) {
+        return depMapper.queryDepList(name, tele);
     }
 }

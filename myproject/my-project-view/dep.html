@@ -28,8 +28,8 @@
 <body>
 <div class="easyui-panel">
 <form id="searchForm">
-	名称：<input name="t1.name" >
-	电话：<input name="t1.tele" >
+	名称：<input name="name" >
+	电话：<input name="tele" >
 
 	<button type="button" id="btnSearch">查询</button>
 </form>
@@ -62,11 +62,7 @@
 				{filed:'name',title:"部门名称",width:400},
 				{filed:'tele',title:"部门电话",width:400}
 			]],*/
-			columns:[[    
-		        {field:'code',title:'部门编号',width:100},    
-		        {field:'name',title:'部门名称',width:100},    
-		        {field:'tele',title:'部门电话',width:100,align:'right'}    
-    		]],
+			columns:columns,
 			singleSelect:true
 		})
 	});

@@ -11,6 +11,16 @@ import java.util.List;
  */
 @Mapper
 public interface DepMapper {
-    @Select(value = "SELECT UUID,NAME,TELE FROM DEP")
-    public List<Dep> queryDepList();
+    // @Select(value = "SELECT UUID,NAME,TELE FROM DEP")
+    @Select(value = "<script>" +
+            "SELECT UUID,NAME,TELE FROM DEP" +
+            "WHERE 1=1 AND" +
+               // "<if test='name != null and name != ''''>" +
+                    "AND NAME = #{name}" +
+               // "</if>" +
+                //"<if test='tele != null and tele != ''''>" +
+                     "AND TELE = #{tele}" +
+               // "</if>" +
+            "</script>" )
+    public List<Dep> queryDepList(String name,String tele);
 }
