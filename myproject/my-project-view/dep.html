@@ -52,6 +52,24 @@
 		<button id="btnSave" type="button">保存</button>
 	</form>
 </div>
-
+<script>
+	$(function(){
+		$("#grid").datagrid({
+			 url :'http://127.0.0.1:8080/dep/all',
+			 // url :'dep.json',
+			/*columns:[[
+				{filed:'uuid',title:"部门编号",width:400},
+				{filed:'name',title:"部门名称",width:400},
+				{filed:'tele',title:"部门电话",width:400}
+			]],*/
+			columns:[[    
+		        {field:'code',title:'部门编号',width:100},    
+		        {field:'name',title:'部门名称',width:100},    
+		        {field:'tele',title:'部门电话',width:100,align:'right'}    
+    		]],
+			singleSelect:true
+		})
+	});
+</script>
 </body>
 </html>
