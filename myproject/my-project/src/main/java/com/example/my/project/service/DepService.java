@@ -9,4 +9,12 @@ import java.util.List;
  */
 public interface DepService {
     List<Dep> queryDepList(String name, String tele);
+
+    Integer add(Dep dep);
+
+    Integer delete(String id);
+
+    Dep getDepById(String id);
+
+    Integer updateDepById(Dep dep);
 }

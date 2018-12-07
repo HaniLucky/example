@@ -1,5 +1,6 @@
 
 var method="";//保存提交的方法名称 
+var pre = "/api/" // 匹配接口的前缀
 $(function(){
 	
 	//如果listParam没有定义则设置初始值为"";
@@ -67,15 +68,20 @@ $(function(){
 		}
 		
 		//表单searchForm的数据转换为json对象
-		var formdata=$('#editForm').serializeJSON();		
-		
+		//var formdata=$('#editForm').serializeJSON();		
+		// alert('ok');
+		// 将表单数据转换为js对象 JSON.stringify 将数据转换为json字符串
+		var formdata=JSON.stringify($('#editForm').serializeJSON());	
+		console.info(formdata);
 		$.ajax({
-			url:"http://127.0.0.1:8080"+name+'/'+method+saveParam,
+			// url:"http://127.0.0.1:8080"+name+'/'+method+saveParam,
+			url:pre+name+'/'+method+saveParam,
 			data:formdata,
 			dataType:'json',
 			type:'post',
+			// 传递json contentType需要声明为json
+			contentType: "application/json",
 			success:function(value){
-				
 				if(value.success){
 					$('#editWindow').window('close');
 					$('#grid').datagrid('reload');
@@ -121,7 +127,7 @@ function dele(id){
 		if(r)
 		{
 			$.ajax({
-				url:name+'_delete.action?id='+id,
+				url:pre+name+'/delete?id='+id,
 				dataType:'json',
 				success:function(value){
 					if(value.success){
@@ -138,9 +144,10 @@ function dele(id){
  * 编辑
  */
 function edit(id){
-	
+	// 打开编辑框
 	$('#editWindow').window('open');
+	// 清除表单
 	$('#editForm').form('clear');
-	$('#editForm').form('load',name+'_get.action?id='+id);	
+	$('#editForm').form('load',pre+name+'/get?id='+id);	
 	method="update";
 }

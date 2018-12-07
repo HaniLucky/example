@@ -37,17 +37,18 @@
 <!-- 数据列表 -->
 <table id="grid"></table>
 
-<!-- ADD弹出框 -->
+<!-- ADD与修改弹出框 -->
 <div id="editWindow" class="easyui-window" title="部门编辑" 
 	style="width: 300px;height: 200px" data-options="closed:true">
 	<form id="editForm">
-	<input name="t.uuid" type="hidden"> 
+		<!-- 添加的时候不需要id 但是更新的时候需要 -->
+	 <input name="uuid" type="hidden"> 
 		<table>
 			<tr>
-				<td>名称</td><td><input name="t.name"> </td>
+				<td>名称</td><td><input name="name"> </td>
 			</tr>
 			<tr>
-				<td>电话</td><td><input name="t.tele"> </td>
+				<td>电话</td><td><input name="tele"> </td>
 			</tr>
 
 		</table>	
@@ -57,11 +58,13 @@
 <script>
 	$(function(){
 		$("#grid").datagrid({
-			 url :'http://127.0.0.1:8080/dep/all',
+			// 添加一层/api/ 通过nginx代理到127.0.0.1:8080 访问最终的地址
+			 url :'/api/dep/all',
 			columns:columns,
 			singleSelect:true
 		})
 	});
+
 </script>
 </body>
 </html>
