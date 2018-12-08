@@ -33,6 +33,7 @@
 	电话：<input name="tele" >
 	<button type="button" id="btnSearch">查询</button>
 </form>
+<button id="test">测试</button>
 </div>
 <!-- 数据列表 -->
 <table id="grid"></table>
@@ -54,6 +55,7 @@
 		</table>	
 		<button id="btnSave" type="button">保存</button>
 	</form>
+	
 </div>
 <script>
 	$(function(){
@@ -64,6 +66,11 @@
 			singleSelect:true
 		})
 	});
+	$("#test").click(function() {
+		var data = $("#grid").datagrid("getData");
+		console.info(data);
+	});
+	
 
 </script>
 </body>

@@ -27,43 +27,37 @@ public class DepController {
     private DepService depService;
 
     @RequestMapping(value = "/all")
-    public /*Result*/ List<Dep> allDep(String name,String tele) {
-        logger.info("查询Dep列表,参数为:name:{},tele:{}",name,tele);
-        /*List<Dep> depList = depService.queryDepList();
-        return new Result("200", "请求成功", depList);*/
-        return  depService.queryDepList(name,tele);
+    public List<Dep> allDep(String name,String tele,Integer page,Integer rows) {
+        return  depService.queryDepList(name,tele,page,rows);
     }
 
     @PostMapping(value = "/add")
-    public Map<String,Object> add(@RequestBody Dep dep) {
+    public Result add(@RequestBody Dep dep) {
         Integer num = depService.add(dep);
-        Map<String,Object> map = new HashMap<>();
-        map.put("success",true);
-        map.put("message","添加成功");
-        return map;
+        return new Result(true,"添加成功",num);
     }
 
     @GetMapping(value = "/delete")
-    public Map<String,Object> delete(String id) {
-        System.out.println(id);
+    public Result delete(String id) {
         Integer num = depService.delete(id);
-        Map<String,Object> map = new HashMap<>();
-        map.put("success",true);
-        map.put("message","删除成功");
-        return map;
+        return new Result(true,"删除成功",num);
     }
 
     @GetMapping(value = "/get")
-    public /*Result<Dep>*/ Dep get(String id){
-
-//        Dep dep =  depService.getDepById(id);
+    public Dep get(String id){
         return depService.getDepById(id);
-   // return new Result(true,"success",dep);
     }
 
     @PostMapping(value = "/update")
     public Result update(@RequestBody Dep dep){
         Integer num = depService.updateDepById(dep);
         return new Result(true,"更新成功",num);
+    }
+
+    public void exportExcel(){
+        System.out.println("导出");
+    }
+    public void importExcel(){
+        System.out.println("导入");
     }
 }

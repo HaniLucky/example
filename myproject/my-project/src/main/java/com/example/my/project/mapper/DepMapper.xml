@@ -24,9 +24,9 @@
       INSERT INTO DEP (NAME,TELE) VALUES (#{name},#{tele})
     </insert>
 
-    <delete id="delete" parameterType="java.lang.String">
+    <!--<delete id="delete" parameterType="java.lang.String">
         DELETE FROM DEP WHERE  uuid = #{id}
-    </delete>
+    </delete>-->
 
     <select id="getDepById" parameterType="java.lang.String" resultMap="depResultMap">
         SELECT UUID,NAME ,TELE FROM DEP WHERE  uuid = #{id}

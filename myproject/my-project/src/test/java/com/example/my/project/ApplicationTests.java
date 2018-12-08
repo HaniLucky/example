@@ -19,7 +19,7 @@ public class ApplicationTests {
 
     @Test
     public void contextLoads() {
-        System.out.println(JSON.toJSON(depService.queryDepList("", "")));
+       // System.out.println(JSON.toJSON(depService.queryDepList("", "")));
     }
 
 }

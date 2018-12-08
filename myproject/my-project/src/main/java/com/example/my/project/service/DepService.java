@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Covet on 2018/12/5.
  */
 public interface DepService {
-    List<Dep> queryDepList(String name, String tele);
+    List<Dep> queryDepList(String name, String tele,Integer page,Integer rows);
 
     Integer add(Dep dep);
 

@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by Covet on 2018/12/5.
  */
 @Mapper
-public interface DepMapper {
+public interface DepMapper extends tk.mybatis.mapper.common.Mapper<Dep>{
     // @Select(value = "SELECT UUID,NAME,TELE FROM DEP")
     // public List<Dep> queryDepList(String name,String tele);
 
@@ -19,7 +19,7 @@ public interface DepMapper {
 
     Integer add(Dep dep);
 
-    Integer delete(String id);
+   // Integer delete(String id);
 
     Dep getDepById(String id);
 
