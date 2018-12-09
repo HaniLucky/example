@@ -59,7 +59,7 @@ $(function(){
 	
 	
 	
-	//保存
+	//保存和新增
 	$('#btnSave').bind('click',function(){
 		//前端验证
 		var isValidate= $('#editForm').form('validate');
@@ -72,13 +72,22 @@ $(function(){
 		// alert('ok');
 		// 将表单数据转换为js对象 JSON.stringify 将数据转换为json字符串
 		var formdata=JSON.stringify($('#editForm').serializeJSON());	
-		console.info(formdata);
+		// console.info(formdata);
+		// 判断如果id为空就是新增加 不为空就是更新
+		/*var uuid = $("#uuid").val();
+		if (uuid == "") {
+			method = 'POST'
+		}else{
+			method = "PUT"
+		}*/
+		method = $("#uuid").val()== ""? 'POST' : 'PUT';
 		$.ajax({
 			// url:"http://127.0.0.1:8080"+name+'/'+method+saveParam,
-			url:pre+name+'/'+method+saveParam,
+			// url:pre+name+'/'+method+saveParam,
+			url:pre+name+'/'+saveParam,
 			data:formdata,
 			dataType:'json',
-			type:'post',
+			type:method,
 			// 传递json contentType需要声明为json
 			contentType: "application/json",
 			success:function(value){
@@ -120,6 +129,7 @@ $(function(){
 
 /**
  * 删除 
+ * RestApi DELETE请求
  */
 function dele(id){
 	
@@ -127,7 +137,8 @@ function dele(id){
 		if(r)
 		{
 			$.ajax({
-				url:pre+name+'/delete?id='+id,
+				url:pre+name+'/'+id,
+				type:'DELETE',
 				dataType:'json',
 				success:function(value){
 					if(value.success){
@@ -148,6 +159,6 @@ function edit(id){
 	$('#editWindow').window('open');
 	// 清除表单
 	$('#editForm').form('clear');
-	$('#editForm').form('load',pre+name+'/get?id='+id);	
+	$('#editForm').form('load',pre+name+'/'+id);	
 	method="update";
 }

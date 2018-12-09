@@ -1,0 +1,11 @@
+一个项目的上线流程
+	需求分析->软件设计->编码->测试->上线->系统维护
+	
+技术选型
+	前端:HTML,JavaScript,Css,easyUi
+	后端:springboot,mybatis,springmvc,spring
+	
+设计
+	相关文档的书写
+	类图,活动会的绘制
+	数据库表设计
