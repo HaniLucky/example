@@ -17,12 +17,12 @@
 function login(){	
 	var formdata=$('#loginform').serializeJSON();	
 	$.ajax({
-		url:'login_checkUser.action',
+		url:'/api/emp/login',
 		dataType:'json',
 		type:'post',
 		data:formdata,
 		success:function(value){
-			
+			console.info(value);
 			if(value.success){//如果成功
 				location.href="index.html";//跳转到主界面 
 			}else

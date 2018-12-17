@@ -13,7 +13,7 @@ $(function(){
 	showName();//显示姓名
 	
 	$.ajax({
-		url:'menu_getMenuTree.action',
+		url:'/api/emp/meunTree',
 		dataType:'json',
 		success:function(value){
 			_menus=value;
@@ -29,7 +29,7 @@ $(function(){
 	$('#loginOut').bind('click',function(){
 		
 		$.ajax({
-			url:'login_loginOut.action',
+			url:'/api/emp/logout',
 			success:function(value){
 				location.href="login.html";
 			}			
@@ -45,9 +45,11 @@ $(function(){
 function showName(){
 	
 	$.ajax({
-		url:'login_showName.action',
+		url:'/api/emp/showName',
 		dataType:'json',
 		success:function(value){
+			// console.info(value);
+			// console.info(value.success);
 			if(value.success){
 				$('#username').html(value.message);
 			}else{//如果当前用户未登陆

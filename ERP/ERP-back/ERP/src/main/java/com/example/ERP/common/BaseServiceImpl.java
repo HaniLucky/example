@@ -31,7 +31,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	}
 
 	@Override
-	public T queryById(Long id) {
+	public T queryById(Object id) {
 		T t = this.mapper.selectByPrimaryKey(id);
 		return t;
 	}

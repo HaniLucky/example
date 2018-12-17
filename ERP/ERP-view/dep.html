@@ -22,7 +22,6 @@
 			    		return "<a href='#' onclick='edit("+row.uuid+")'>修改</a> <a href='#' onclick='dele("+row.uuid+")'>删除</a>";
 			    	}}		    
 			          ]];
-
 </script>
 </head>
 <body>
@@ -33,7 +32,6 @@
 	电话：<input name="tele" >
 	<button type="button" id="btnSearch">查询</button>
 </form>
-<button id="test">测试</button>
 </div>
 <!-- 数据列表 -->
 <table id="grid"></table>
@@ -58,20 +56,14 @@
 	
 </div>
 <script>
-	$(function(){
+	/*$(function(){
 		$("#grid").datagrid({
 			// 添加一层/api/ 通过nginx代理到127.0.0.1:8080 访问最终的地址
 			 url :'/api/dep/all',
 			columns:columns,
 			singleSelect:true
 		})
-	});
-	$("#test").click(function() {
-		var data = $("#grid").datagrid("getData");
-		console.info(data);
-	});
-	
-
+	});*/
 </script>
 </body>
 </html>

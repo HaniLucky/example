@@ -1,6 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.ERP.mapper.EmpMapper">
+    <resultMap id="empVoResult" type="com.example.ERP.vo.EmpVo">
+        <result property="uuid" column="uuid"></result>
+        <result property="username" column="username"></result>
+        <result property="pwd" column="pwd"></result>
+        <result property="name" column="name"></result>
+        <result property="gender" column="gender"></result>
+        <result property="email" column="email"></result>
+        <result property="tele" column="tele"></result>
+        <result property="address" column="address"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="depNm" column="depNm"></result>
+    </resultMap>
+    <select id="queryListPageBaenByWheres" parameterType="com.example.ERP.vo.EmpVo" resultMap="empVoResult">
+        SELECT
+            T1.UUID AS uuid,
+            T1.USERNAME AS username,
+            T1. NAME AS name,
+            T1.GENDER AS gender,
+            T1.EMAIL AS email,
+            T1.TELE AS tele,
+            T1.ADDRESS AS address,
+            T1.BIRTHDAY AS birthday,
+            T2.NAME AS depNm
+        FROM
+            EMP T1
+        LEFT JOIN DEP T2 ON T1.DEPUUID = T2.UUID
+    <where>
+        <if test="username != null and username != ''">
+             AND T1.USERNAME = #{username}
+        </if>
+        <if test="name != null and name != ''">
+            AND T1.NAME = #{name}
+        </if>
+        <if test="gender != null and gender != ''">
+            AND T1.GENDER = #{gender}
+        </if>
+        <if test="email != null and email != ''">
+            AND T1.EMAIL = #{email}
+        </if>
+        <if test="tele != null and tele != ''">/*TELE mybaits关键字 需要用``引用*/
+            AND T1.`TELE` = #{tele}
+        </if>
+        <if test="address != null and address != ''">
+            AND T1.ADDRESS = #{address}
+        </if>
+        <if test="birthdayBegin != null">/*大于*/
+            AND T1.BIRTHDAY &lt;= #{birthdayBegin}
+        </if>
+        <if test="birthdayEnd != null">
+            AND T1.BIRTHDAY &lt;= #{birthdayEnd}
+        </if>
+        <if test="depuuid != null">
+            AND T2.UUID = #{depuuid}
+        </if>
+    </where>
+    </select>
+
+    <select id="test">
+        SELECT now()
+    </select>
+
+    <select id="login" parameterType="com.example.ERP.vo.Emp"  resultType="com.example.ERP.vo.Emp" >
+
+        SELECT
+            T1.UUID AS uuid,
+            T1.USERNAME AS username,
+            T1. NAME AS name,
+            T1.GENDER AS gender,
+            T1.EMAIL AS email,
+            T1.TELE AS tele,
+            T1.ADDRESS AS address
+        FROM
+            EMP T1 WHERE  T1.USERNAME = #{username} AND  T1.PWD = #{pwd}
+    </select>
+
+    <select id="menuTree" parameterType="java.lang.String" resultType="com.example.ERP.vo.Menu">
+        SELECT
+          MENUID as menuid ,
+          MENUNAME as menuname,
+          ICON as icon,
+          URL as url,
+          PID as pid
+        FROM
+          MENU WHERE
+           MENUID = #{menuId}
+    </select>
+
+    <select id="menuSubordinate" parameterType="java.lang.String" resultType="com.example.ERP.vo.Menu">
+        SELECT
+        MENUID as menuid ,
+        MENUNAME as menuname,
+        ICON as icon,
+        URL as url,
+        PID as pid
+        FROM
+        MENU WHERE
+        PID = #{pid}
+    </select>
+    
+
 
 
 </mapper>

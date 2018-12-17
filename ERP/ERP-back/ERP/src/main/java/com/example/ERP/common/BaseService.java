@@ -9,7 +9,7 @@ public interface BaseService<T> {
 	 * @param id
 	 * @return
 	 */
-	public T queryById(Long id);
+	public T queryById(Object id);
 
 	/**
 	 * 查询所有数据

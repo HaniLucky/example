@@ -21,7 +21,7 @@ public class DepController {
     @Autowired
     private DepService depService;
 
-    @RequestMapping(value = "/all",method = RequestMethod.POST)
+    @RequestMapping(value = "/listByPage",method = RequestMethod.POST)
     public PageBean<Dep> allDep(Dep dep, Integer page, Integer rows) {
         // 查询条件重新赋值
         dep.setName("".equals(dep.getName())?null:dep.getName());

@@ -51,8 +51,10 @@ $(function(){
 		//表单searchForm的数据转换为json对象
 		var formdata=$('#searchForm').serializeJSON();	
 		//JSON.stringify 用于将json对象转换为json字符串
-		//alert(JSON.stringify(formdata));	
-		
+		// alert(typeof formdata.birthdayBegin);
+		// alert(typeof formdata.birthdayEnd);
+		// alert(JSON.stringify(formdata));	
+		// alert(formdata);
 		//将表单的对象提交到后端做条件查询 
 		$('#grid').datagrid('load',formdata);	
 	});
@@ -80,6 +82,7 @@ $(function(){
 		}else{
 			method = "PUT"
 		}*/
+		console.info($("#uuid").val());
 		method = $("#uuid").val()== ""? 'POST' : 'PUT';
 		$.ajax({
 			// url:"http://127.0.0.1:8080"+name+'/'+method+saveParam,

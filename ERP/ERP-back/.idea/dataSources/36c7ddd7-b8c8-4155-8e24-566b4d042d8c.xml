@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="ERP@144.34.172.125">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="erp">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="ERP">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="4" parent="1" name="information_schema"/>
+    <table id="5" parent="3" name="dep">
+      <Comment>部门</Comment>
+    </table>
+    <table id="6" parent="3" name="emp">
+      <Comment>员工</Comment>
+    </table>
+    <table id="7" parent="3" name="emp_role"/>
+    <table id="8" parent="3" name="goods">
+      <Comment>商品</Comment>
+    </table>
+    <table id="9" parent="3" name="goodstype">
+      <Comment>商品分类</Comment>
+    </table>
+    <table id="10" parent="3" name="menu">
+      <Comment>菜单</Comment>
+    </table>
+    <table id="11" parent="3" name="orderdetail">
+      <Comment>订单明细</Comment>
+    </table>
+    <table id="12" parent="3" name="orders">
+      <Comment>订单</Comment>
+    </table>
+    <table id="13" parent="3" name="returnorderdetail">
+      <Comment>退货订单明细</Comment>
+    </table>
+    <table id="14" parent="3" name="returnorders">
+      <Comment>退货订单</Comment>
+    </table>
+    <table id="15" parent="3" name="role">
+      <Comment>角色</Comment>
+    </table>
+    <table id="16" parent="3" name="role_menu"/>
+    <table id="17" parent="3" name="store">
+      <Comment>仓库</Comment>
+    </table>
+    <table id="18" parent="3" name="storedetail">
+      <Comment>仓库库存</Comment>
+    </table>
+    <table id="19" parent="3" name="storeoper">
+      <Comment>仓库操作记录</Comment>
+    </table>
+    <table id="20" parent="3" name="supplier">
+      <Comment>供应商</Comment>
+    </table>
+    <column id="21" parent="5" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="22" parent="5" name="NAME">
+      <Position>2</Position>
+      <Comment>名称</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="23" parent="5" name="TELE">
+      <Position>3</Position>
+      <Comment>电话</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <key id="24" parent="5" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>UUID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="25" parent="6" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="6" name="USERNAME">
+      <Position>2</Position>
+      <Comment>登陆名</Comment>
+      <DataType>varchar(15)|0</DataType>
+    </column>
+    <column id="27" parent="6" name="PWD">
+      <Position>3</Position>
+      <Comment>密码</Comment>
+      <DataType>varchar(32)|0</DataType>
+    </column>
+    <column id="28" parent="6" name="NAME">
+      <Position>4</Position>
+      <Comment>真实姓名</Comment>
+      <DataType>varchar(28)|0</DataType>
+    </column>
+    <column id="29" parent="6" name="GENDER">
+      <Position>5</Position>
+      <Comment>性别</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="30" parent="6" name="EMAIL">
+      <Position>6</Position>
+      <Comment>EMAIL</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="31" parent="6" name="TELE">
+      <Position>7</Position>
+      <Comment>电话</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="32" parent="6" name="ADDRESS">
+      <Position>8</Position>
+      <Comment>地址</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="33" parent="6" name="BIRTHDAY">
+      <Position>9</Position>
+      <Comment>出生年月日</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="34" parent="6" name="DEPUUID">
+      <Position>10</Position>
+      <Comment>部门编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <key id="35" parent="6" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>UUID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="36" parent="7" name="EMPUUID">
+      <Position>1</Position>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="7" name="ROLEUUID">
+      <Position>2</Position>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="38" parent="7" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>EMPUUID
+ROLEUUID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="39" parent="8" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="40" parent="8" name="NAME">
+      <Position>2</Position>
+      <Comment>名称</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="41" parent="8" name="ORIGIN">
+      <Position>3</Position>
+      <Comment>产地</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="42" parent="8" name="PRODUCER">
+      <Position>4</Position>
+      <Comment>厂家</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="43" parent="8" name="UNIT">
+      <Position>5</Position>
+      <Comment>计量单位</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="44" parent="8" name="INPRICE">
+      <Position>6</Position>
+      <Comment>进货价格</Comment>
+      <DataType>decimal(8,2)|0</DataType>
+    </column>
+    <column id="45" parent="8" name="OUTPRICE">
+      <Position>7</Position>
+      <Comment>销售价格</Comment>
+      <DataType>decimal(8,2)|0</DataType>
+    </column>
+    <column id="46" parent="8" name="GOODSTYPEUUID">
+      <Position>8</Position>
+      <Comment>商品类型</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <key id="47" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>UUID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="48" parent="9" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="49" parent="9" name="NAME">
+      <Position>2</Position>
+      <Comment>名称</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <key id="50" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>UUID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="51" parent="10" name="MENUID">
+      <Position>1</Position>
+      <Comment>菜单ID</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="10" name="MENUNAME">
+      <Position>2</Position>
+      <Comment>菜单名称</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="53" parent="10" name="ICON">
+      <Position>3</Position>
+      <Comment>图标</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="54" parent="10" name="URL">
+      <Position>4</Position>
+      <Comment>URL</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="55" parent="10" name="PID">
+      <Position>5</Position>
+      <Comment>上级菜单ID</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="56" parent="11" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="57" parent="11" name="GOODSUUID">
+      <Position>2</Position>
+      <Comment>商品编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="58" parent="11" name="GOODSNAME">
+      <Position>3</Position>
+      <Comment>商品名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="59" parent="11" name="PRICE">
+      <Position>4</Position>
+      <Comment>价格</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+    </column>
+    <column id="60" parent="11" name="NUM">
+      <Position>5</Position>
+      <Comment>数量</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="61" parent="11" name="MONEY">
+      <Position>6</Position>
+      <Comment>金额</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+    </column>
+    <column id="62" parent="11" name="ENDTIME">
+      <Position>7</Position>
+      <Comment>结束日期</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="63" parent="11" name="ENDER">
+      <Position>8</Position>
+      <Comment>库管员</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="64" parent="11" name="STOREUUID">
+      <Position>9</Position>
+      <Comment>仓库编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="65" parent="11" name="STATE">
+      <Position>10</Position>
+      <Comment>状态</Comment>
+      <DataType>char(1)|0</DataType>
+    </column>
+    <column id="66" parent="11" name="ORDERSUUID">
+      <Position>11</Position>
+      <Comment>订单编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="67" parent="12" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="68" parent="12" name="CREATETIME">
+      <Position>2</Position>
+      <Comment>生成日期</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="69" parent="12" name="CHECKTIME">
+      <Position>3</Position>
+      <Comment>检查日期</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="70" parent="12" name="STARTTIME">
+      <Position>4</Position>
+      <Comment>开始日期</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="71" parent="12" name="ENDTIME">
+      <Position>5</Position>
+      <Comment>结束日期</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="72" parent="12" name="TYPE">
+      <Position>6</Position>
+      <Comment>订单类型</Comment>
+      <DataType>char(1)|0</DataType>
+    </column>
+    <column id="73" parent="12" name="CREATER">
+      <Position>7</Position>
+      <Comment>下单员</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="74" parent="12" name="CHECKER">
+      <Position>8</Position>
+      <Comment>审查员</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="75" parent="12" name="STARTER">
+      <Position>9</Position>
+      <Comment>采购员</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="76" parent="12" name="ENDER">
+      <Position>10</Position>
+      <Comment>库管员</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="77" parent="12" name="SUPPLIERUUID">
+      <Position>11</Position>
+      <Comment>供应商ID</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="78" parent="12" name="TOTALMONEY">
+      <Position>12</Position>
+      <Comment>总金额</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+    </column>
+    <column id="79" parent="12" name="STATE">
+      <Position>13</Position>
+      <Comment>订单状态</Comment>
+      <DataType>char(1)|0</DataType>
+    </column>
+    <column id="80" parent="12" name="WAYBILLSN">
+      <Position>14</Position>
+      <Comment>运单号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="81" parent="13" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="82" parent="13" name="GOODSUUID">
+      <Position>2</Position>
+      <Comment>商品编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="83" parent="13" name="GOODSNAME">
+      <Position>3</Position>
+      <Comment>商品名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="84" parent="13" name="PRICE">
+      <Position>4</Position>
+      <Comment>价格</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+    </column>
+    <column id="85" parent="13" name="NUM">
+      <Position>5</Position>
+      <Comment>数量</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="86" parent="13" name="MONEY">
+      <Position>6</Position>
+      <Comment>金额</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+    </column>
+    <column id="87" parent="13" name="ENDTIME">
+      <Position>7</Position>
+      <Comment>结束日期</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="88" parent="13" name="ENDER">
+      <Position>8</Position>
+      <Comment>库管员</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="89" parent="13" name="STOREUUID">
+      <Position>9</Position>
+      <Comment>仓库编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="90" parent="13" name="STATE">
+      <Position>10</Position>
+      <Comment>状态</Comment>
+      <DataType>char(1)|0</DataType>
+    </column>
+    <column id="91" parent="13" name="ORDERSUUID">
+      <Position>11</Position>
+      <Comment>订单编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="92" parent="14" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="93" parent="14" name="CREATETIME">
+      <Position>2</Position>
+      <Comment>生成日期</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="94" parent="14" name="CHECKTIME">
+      <Position>3</Position>
+      <Comment>检查日期</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="95" parent="14" name="ENDTIME">
+      <Position>4</Position>
+      <Comment>结束日期</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="96" parent="14" name="TYPE">
+      <Position>5</Position>
+      <Comment>订单类型</Comment>
+      <DataType>char(1)|0</DataType>
+    </column>
+    <column id="97" parent="14" name="CREATER">
+      <Position>6</Position>
+      <Comment>下单员</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="98" parent="14" name="CHECKER">
+      <Position>7</Position>
+      <Comment>审查员</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="99" parent="14" name="ENDER">
+      <Position>8</Position>
+      <Comment>库管员</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="100" parent="14" name="SUPPLIERUUID">
+      <Position>9</Position>
+      <Comment>供应商ID</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="101" parent="14" name="TOTALMONEY">
+      <Position>10</Position>
+      <Comment>总金额</Comment>
+      <DataType>decimal(10,2)|0</DataType>
+    </column>
+    <column id="102" parent="14" name="STATE">
+      <Position>11</Position>
+      <Comment>订单状态</Comment>
+      <DataType>char(1)|0</DataType>
+    </column>
+    <column id="103" parent="14" name="WAYBILLSN">
+      <Position>12</Position>
+      <Comment>运单号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="104" parent="14" name="ORDERSUUID">
+      <Position>13</Position>
+      <Comment>原订单编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="105" parent="15" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="106" parent="15" name="NAME">
+      <Position>2</Position>
+      <Comment>名称</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="107" parent="16" name="ROLEUUID">
+      <Position>1</Position>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="108" parent="16" name="MENUUUID">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="109" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ROLEUUID
+MENUUUID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="110" parent="17" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="111" parent="17" name="NAME">
+      <Position>2</Position>
+      <Comment>名称</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="112" parent="17" name="EMPUUID">
+      <Position>3</Position>
+      <Comment>员工编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="113" parent="18" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="114" parent="18" name="STOREUUID">
+      <Position>2</Position>
+      <Comment>仓库编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="115" parent="18" name="GOODSUUID">
+      <Position>3</Position>
+      <Comment>商品编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="116" parent="18" name="NUM">
+      <Position>4</Position>
+      <Comment>数量</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="117" parent="19" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="118" parent="19" name="EMPUUID">
+      <Position>2</Position>
+      <Comment>员工编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="119" parent="19" name="OPERTIME">
+      <Position>3</Position>
+      <Comment>操作日期</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="120" parent="19" name="STOREUUID">
+      <Position>4</Position>
+      <Comment>仓库编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="121" parent="19" name="GOODSUUID">
+      <Position>5</Position>
+      <Comment>商品编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="122" parent="19" name="NUM">
+      <Position>6</Position>
+      <Comment>数量</Comment>
+      <DataType>decimal(8)|0</DataType>
+    </column>
+    <column id="123" parent="19" name="TYPE">
+      <Position>7</Position>
+      <Comment>类型</Comment>
+      <DataType>char(1)|0</DataType>
+    </column>
+    <column id="124" parent="20" name="UUID">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>decimal(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="125" parent="20" name="NAME">
+      <Position>2</Position>
+      <Comment>名称</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="126" parent="20" name="ADDRESS">
+      <Position>3</Position>
+      <Comment>地址</Comment>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="127" parent="20" name="CONTACT">
+      <Position>4</Position>
+      <Comment>联系人</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="128" parent="20" name="TELE">
+      <Position>5</Position>
+      <Comment>电话</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="129" parent="20" name="EMAIL">
+      <Position>6</Position>
+      <Comment>EMAIL</Comment>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="130" parent="20" name="TYPE">
+      <Position>7</Position>
+      <Comment>类型</Comment>
+      <DataType>char(1)|0</DataType>
+    </column>
+  </database-model>
+</dataSource>

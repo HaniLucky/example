@@ -4,9 +4,9 @@ import lombok.*;
 
 import javax.persistence.Id;
 import java.util.Date;
-import java.util.UUID;
 
 /**
+ * emp映射VO 条件映射与返回映射
  * Created by Covet on 2018/12/9.
  */
 @NoArgsConstructor
@@ -14,9 +14,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class Emp {
+public class EmpVo extends Emp{
 
-    @Id
     private Integer uuid;
     private String username;
     private String pwd;
@@ -27,5 +26,10 @@ public class Emp {
     private String address;
     private Date birthday;
     private Long depuuid;
-    // public String a;
+
+    private String depNm;
+    private Date birthdayBegin;
+    private Date birthdayEnd;
+    private String birthdayBeginStr;
+    private String birthdayEndStr;
 }
