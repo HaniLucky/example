@@ -14,7 +14,6 @@ public class ErpApplicationTests {
 	public void contextLoads() {
         Md5Hash md5Hash = new Md5Hash("123456", "admin", 2);
         System.out.println(md5Hash);
-
     }
 
 }

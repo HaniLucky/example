@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface DepMapper extends tk.mybatis.mapper.common.Mapper<Dep>{
+
 }

@@ -1,4 +1,4 @@
-package com.example.ERP;
+package com.example.ERP.tree;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.ERP.vo.Menu;
