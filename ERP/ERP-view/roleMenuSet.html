@@ -12,8 +12,9 @@
 </head>
 <body class="easyui-layout">
 
+<!-- 角色列表显示 -->
 <div data-options="region:'west',title:'请选择角色',split:true" style="width:215px;">
-	<table class="easyui-datagrid" data-options="url:'role_list.action',singleSelect:true,onClickRow:clickRow">
+	<table class="easyui-datagrid" data-options="url:'/api/role/s',singleSelect:true,onClickRow:clickRow">
 		<thead>
 			<tr>
 				<th data-options="field:'uuid',width:100">角色ID</th>
@@ -22,8 +23,11 @@
 		</thead>
 	</table>
 </div>   
+
 <div data-options="region:'center',title:'请设置权限'" style="padding:5px;background:#eee;">
+	<!-- 树形菜单显示 -->
    <ul id="tree"></ul>
+   <!-- 保存角色菜单 -->
    <button onclick="save()">保存</button>
 </div>   
 

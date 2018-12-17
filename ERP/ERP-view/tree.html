@@ -13,8 +13,12 @@
 	$(function(){
 		
 		$('#tree').tree({
-			url:'role_readRoleMenus.action',
+			// 数据来源
+			// url:'role_readRoleMenus.action',
+			url:'tree.json',
+			// 是否显示动画效果
 			animate:true,
+			// 是否显示复选框
 			checkbox:true
 		});
 		

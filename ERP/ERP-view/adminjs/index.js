@@ -13,7 +13,7 @@ $(function(){
 	showName();//显示姓名
 	
 	$.ajax({
-		url:'/api/emp/meunTree',
+		url:'/api/menu/meunTree',
 		dataType:'json',
 		success:function(value){
 			_menus=value;

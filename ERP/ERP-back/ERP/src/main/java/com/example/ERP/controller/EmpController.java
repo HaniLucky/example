@@ -119,37 +119,6 @@ public class EmpController {
         return new Result(true, "SUCCESS", null);
     }
 
-    @ApiOperation(value="查询树形菜单json", notes="查询树形菜单json")
-    @RequestMapping(value = "/meunTree", method = RequestMethod.GET)
-    public Menu meunTree() {
-        // 查询所有菜单数据
-        List<Menu> menus = menuService.queryAll();
-        // 查询父层级
-        Menu rootMenu = menuService.queryById("0");
-        Menu childrens = treeRoot(menus, rootMenu);
-
-        System.out.println(JSONObject.toJSON(childrens));
-        return childrens;
-    }
-
-    private Menu treeRoot(List<Menu> sourceList, Menu rootMenu) {
-        if (sourceList == null) {
-            return null;
-        }
-        List<Menu> childList = new ArrayList<>();
-        for (Menu menu : sourceList) {
-            if (rootMenu.getMenuid().equals(menu.getPid())) {
-                Menu menuChild = treeRoot(sourceList, menu);
-                childList.add(menuChild);
-            }
-        }
-        if (childList.size() == 0) {
-            return rootMenu;
-        }
-        rootMenu.setMenus(childList);
-        return rootMenu;
-    }
-
 
     @ApiOperation(value="修改密码", notes="修改密码")
     @RequestMapping(value = "/pwd",method = RequestMethod.PUT)
