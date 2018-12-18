@@ -69,4 +69,16 @@ public class RoleController {
         // 更新数据
         return new Result(true,"更新角色权限成功",null);
     }
+
+
+    /**
+     * 读取用户角色
+     * @param id  用户id
+     * @return
+     */
+    @RequestMapping(value = "/role/{id}",method = RequestMethod.GET)
+    public List<Tree> readEmpRoles(@PathVariable String id){
+        List<Tree> list=roleService.readEmpRoles(id);
+        return list;
+    }
 }

@@ -38,6 +38,11 @@ public class EmpController {
     public PageBean<Emp> listByPage(Integer page, Integer rows) {
         return empService.queryByPage(page, rows);
     }
+    @ApiOperation(value="查询全部", notes="查询全部")
+    @GetMapping(value = "/")
+    public List<Emp> all() {
+        return empService.queryAll();
+    }
 
     @ApiOperation(value="根据条件查询", notes="根据条件查询")
     @RequestMapping(value = "/listByPage", method = RequestMethod.POST)

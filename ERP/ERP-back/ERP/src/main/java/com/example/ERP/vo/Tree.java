@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 组装树形菜单
  * Created by Covet on 2018/12/17.
  */
 @NoArgsConstructor
