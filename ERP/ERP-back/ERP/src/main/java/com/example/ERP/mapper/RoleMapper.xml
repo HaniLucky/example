@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ERP.mapper.RoleMapper">
+    <resultMap id="MenuResult" type="com.example.ERP.vo.Menu">
+        <result column="MENUID" property="menuid"></result>
+        <result column="MENUNAME" property="menuname"></result>
+        <result column="ICON" property="icon"></result>
+        <result column="URL" property="url"></result>
+        <result column="PID" property="pid"></result>
+    </resultMap>
+
+    <select id="selectRoleMeunByRoleId" parameterType="java.lang.String" resultMap="MenuResult">
+        SELECT
+            T3.MENUID AS MENUID,
+            T3.MENUNAME AS MENUNAME,
+            T3.ICON AS ICON,
+            T3.URL AS URL,
+            T3.PID AS PID
+        FROM
+            ROLE T1,
+            ROLE_MENU T2,
+            MENU T3
+        WHERE
+            T1.UUID = T2.ROLEUUID
+        AND T2.MENUUUID = T3.MENUID
+        AND T1.UUID = #{id}
+    </select>
+</mapper>

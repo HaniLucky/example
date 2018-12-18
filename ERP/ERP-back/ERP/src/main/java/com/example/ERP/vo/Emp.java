@@ -1,9 +1,11 @@
 package com.example.ERP.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -27,5 +29,8 @@ public class Emp {
     private String address;
     private Date birthday;
     private Long depuuid;
-    // public String a;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<Role> roles;
 }
+

@@ -3,9 +3,10 @@ var clickRow=function(rowIndex,rowData){
 	
 	id=rowData.uuid;
 	$('#tree').tree({
-		url:'role_readRoleMenus.action?id='+id,
+		url:'/api/role/'+id,
 		animate:true,
-		checkbox:true
+		checkbox:true,
+		method:'get'
 	});
 	
 }
@@ -24,7 +25,7 @@ function save(){
 	}
 	
 	$.ajax({
-		url:'role_updateRoleMenus.action',
+		url:'/api/role/menu',
 		dataType:'json',
 		data:{'id':id,'checkedStr':checkedStr},
 		type:'post',
@@ -35,3 +36,12 @@ function save(){
 	});
 	
 }
+
+// 加载树形菜单
+/*$(function(){
+	$('#tree').tree({
+		url:'/api/role/',// 指定地址
+		checkbox:true, // 添加复选框
+		animate:true // 动画效果
+	})
+})*/

@@ -1,21 +1,71 @@
-[
-{
-"id":"100",
-"text":"基础信息管理",
-"children":[
-      {"id":"101","text":"商品分类","children":[
-      	   {"id":"111","text":"商品分类编辑"},
-      	   {"id":"112","text":"商品分类删除","checked":true}      
-      ]},
-      {"id":"102","text":"商品"}
-   ]
-},
-{
-"id":"200",
-"text":"人事管理",
-"children":[
-      {"id":"201","text":"部门"},
-      {"id":"202","text":"员工"}
-   ]
-}
-]
+[{
+	"id": "100",
+	"text": "基础数据",
+	"checked": true,
+	"children": [{
+		"id": "101",
+		"text": "商品类型",
+		"checked": true,
+		"children": []
+	}, {
+		"id": "102",
+		"text": "商品",
+		"checked": false,
+		"children": []
+	}, {
+		"id": "103",
+		"text": "供应商",
+		"checked": false,
+		"children": []
+	}, {
+		"id": "104",
+		"text": "客户",
+		"checked": false,
+		"children": []
+	}, {
+		"id": "105",
+		"text": "仓库",
+		"checked": false,
+		"children": []
+	}]
+}, {
+	"id": "200",
+	"text": "人事管理",
+	"checked": false,
+	"children": [{
+		"id": "201",
+		"text": "部门",
+		"checked": false,
+		"children": []
+	}, {
+		"id": "202",
+		"text": "员工",
+		"checked": false,
+		"children": []
+	}]
+}, {
+	"id": "300",
+	"text": "系统配置",
+	"checked": false,
+	"children": [{
+		"id": "301",
+		"text": "菜单管理",
+		"checked": false,
+		"children": []
+	}, {
+		"id": "302",
+		"text": "角色管理",
+		"checked": false,
+		"children": []
+	}, {
+		"id": "303",
+		"text": "用户角色设置",
+		"checked": true,
+		"children": []
+	}, {
+		"id": "304",
+		"text": "角色权限设置",
+		"checked": false,
+		"children": []
+	}]
+}]

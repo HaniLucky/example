@@ -108,7 +108,7 @@ public interface BaseService<T> {
 	 * @param id
 	 * @return
 	 */
-	public int deleteById(Long id);
+	public int deleteById(Object id);
 
 	/**
 	 * 根据ids批量删除数据
