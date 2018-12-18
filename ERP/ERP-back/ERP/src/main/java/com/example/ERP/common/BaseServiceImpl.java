@@ -112,7 +112,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	}
 
 	@Override
-	public int deleteById(Long id) {
+	public int deleteById(Object id) {
 		return this.mapper.deleteByPrimaryKey(id);
 	}
 

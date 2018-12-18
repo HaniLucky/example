@@ -25,7 +25,7 @@ function save(){
 	}
 	
 	$.ajax({
-		url:'role_updateRoleMenus.action',
+		url:'/api/role/menu',
 		dataType:'json',
 		data:{'id':id,'checkedStr':checkedStr},
 		type:'post',
