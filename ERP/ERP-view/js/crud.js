@@ -73,6 +73,7 @@ $(function(){
 		//var formdata=$('#editForm').serializeJSON();		
 		// alert('ok');
 		// 将表单数据转换为js对象 JSON.stringify 将数据转换为json字符串
+		console.info($('#editForm').serializeJSON())
 		var formdata=JSON.stringify($('#editForm').serializeJSON());	
 		// console.info(formdata);
 		// 判断如果id为空就是新增加 不为空就是更新

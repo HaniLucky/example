@@ -13,7 +13,7 @@ $(function(){
 	showName();//显示姓名
 	
 	$.ajax({
-		url:'/api/menu/meunTree',
+		url:'/api/tree/meunTree',
 		dataType:'json',
 		success:function(value){
 			_menus=value;
@@ -29,7 +29,7 @@ $(function(){
 	$('#loginOut').bind('click',function(){
 		
 		$.ajax({
-			url:'/api/emp/logout',
+			url:'/api/login/logout',
 			success:function(value){
 				location.href="login.html";
 			}			
@@ -45,7 +45,7 @@ $(function(){
 function showName(){
 	
 	$.ajax({
-		url:'/api/emp/showName',
+		url:'/api/login/showName',
 		dataType:'json',
 		success:function(value){
 			// console.info(value);

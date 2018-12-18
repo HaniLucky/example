@@ -3,7 +3,7 @@ var clickRow=function(rowIndex,rowData){
 	
 	id=rowData.uuid;
 	$('#tree').tree({
-		url:'/api/role/role/'+id,
+		url:'/api/tree/user/'+id,
 		animate:true,
 		checkbox:true,
 		method:'get'
@@ -25,7 +25,7 @@ function save(){
 	}
 	
 	$.ajax({
-		url:'/api/role/role/s',
+		url:'/api/role/',
 		dataType:'json',
 		data:{'id':id,'checkedStr':checkedStr},
 		type:'post',
