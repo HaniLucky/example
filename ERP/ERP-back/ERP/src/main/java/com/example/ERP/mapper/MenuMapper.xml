@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.ERP.mapper.MenuMapper">
+    <resultMap id="menuResultMap" type="com.example.ERP.vo.Menu">
+        <result property="menuid" column="MENUID"></result>
+        <result property="menuname" column="MENUNAME"></result>
+        <result property="icon" column="ICON"></result>
+        <result property="url" column="URL"></result>
+        <result property="pid" column="PID"></result>
+    </resultMap>
 
+    <!-- 查询用户菜单 -->
+    <select id="selectEmpMenus" parameterType="java.lang.String" resultMap="menuResultMap">
+      SELECT
+        T5.MENUID AS MENUID,
+        T5.MENUNAME AS MENUNAME,
+        T5.ICON AS ICON,
+        T5.URL AS URL,
+        T5.PID AS PID
+    FROM
+        emp T1
+    LEFT JOIN emp_role T2 ON T1.UUID = T2.EMPUUID
+    LEFT JOIN role T3 ON T2.ROLEUUID = T3.UUID
+    LEFT JOIN role_menu T4 ON T3.UUID = T4.ROLEUUID
+    LEFT JOIN menu T5 ON T5.MENUID = T4.MENUUUID
+    WHERE
+        T1.UUID = #{id}
+    </select>
 </mapper>

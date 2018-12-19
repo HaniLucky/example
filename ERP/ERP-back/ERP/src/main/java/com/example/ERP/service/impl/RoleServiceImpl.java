@@ -98,6 +98,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
         // 获取该用户的角色列表
         List<Role> empRoleList = roleMapper.selectEmpRoleByEmpId(id);
         List<Long> roles = new ArrayList<>();
+        // 获取角色所包含的角色列表id 用于对比是否包含
         for (Role role : empRoleList) {
             roles.add(role.getUuid());
         }
@@ -106,12 +107,12 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
         // 组装Tree
         for (Role role : roleList) {
             Tree tree = new Tree();
-            tree.setId(String.valueOf(role.getUuid()));
-            tree.setText(role.getName());
-            if (roles.contains(role.getUuid())){
-                tree.setChecked(true);
+            tree.setId(String.valueOf(role.getUuid()));   // 设置id
+            tree.setText(role.getName());       // 设置描述
+            if (roles.contains(role.getUuid())){   // 如果用户包含这个角色
+                tree.setChecked(true);      // 勾选
             }
-            trees.add(tree);
+            trees.add(tree);   // 组装该数据
         }
         return trees;
     }

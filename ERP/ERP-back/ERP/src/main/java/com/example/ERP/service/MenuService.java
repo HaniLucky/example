@@ -7,4 +7,10 @@ import com.example.ERP.vo.Menu;
  */
 public interface MenuService  extends BaseService<Menu>{
     Menu menuTree();
+
+    Menu readMenuTreeByEmpId(String id);
+
+
+    Menu readMenuByEmpuuid(String id);
+
 }

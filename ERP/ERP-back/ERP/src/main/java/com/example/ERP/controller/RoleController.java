@@ -11,6 +11,7 @@ import com.example.ERP.vo.RoleMenu;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -70,13 +71,15 @@ public class RoleController {
     public Result updateRoleMenu(String id,String checkedStr){
         try {
             // 获取权限数据
-            String[] split = checkedStr.split(",");
             // 清空角色菜单中间表数据 根据角色id
             int num =roleMenuService.deleteById(id);
             // 新增角色菜单中间表数据
-            for (String menuuuid : split) {
-                RoleMenu roleMenu = new RoleMenu(id,menuuuid);
-                roleMenuService.save(roleMenu);
+            if(!StringUtils.isEmpty(checkedStr)){  // 传递的菜单项不是""时才插入  要不会分割一个串  插入一个roleId有值 menuid没有值得记录
+                String[] split = checkedStr.split(",");
+                for (String menuuuid : split) {
+                    RoleMenu roleMenu = new RoleMenu(id,menuuuid);
+                    roleMenuService.save(roleMenu);
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
