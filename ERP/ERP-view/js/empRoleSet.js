@@ -25,7 +25,7 @@ function save(){
 	}
 	
 	$.ajax({
-		url:'/api/role/',
+		url:'/api/role/role',
 		dataType:'json',
 		data:{'id':id,'checkedStr':checkedStr},
 		type:'post',

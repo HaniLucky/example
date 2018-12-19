@@ -2,12 +2,10 @@ package com.example.ERP.controller;
 
 import com.example.ERP.common.PageBean;
 import com.example.ERP.common.Result;
+import com.example.ERP.service.EmpRoleService;
 import com.example.ERP.service.RoleMenuService;
 import com.example.ERP.service.RoleService;
-import com.example.ERP.vo.Menu;
-import com.example.ERP.vo.Role;
-import com.example.ERP.vo.RoleMenu;
-import com.example.ERP.vo.Tree;
+import com.example.ERP.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +28,48 @@ public class RoleController {
     @Autowired
     private RoleMenuService roleMenuService;
 
+    @Autowired
+    private EmpRoleService empRoleService;
+
+    /**
+     * 角色权限设置
+     * @param id
+     * @param checkedStr
+     * @return
+     */
+    @RequestMapping(value = "/role",method = RequestMethod.POST)
+    public Result updateEmpRole (String id,String checkedStr){
+        try {
+            // 获取权限数据
+            String[] split = checkedStr.split(",");
+            int num =empRoleService.deleteById(id);
+            // 清空中间表数据
+            for (String roleuuid : split) {
+                EmpRole empRole = new EmpRole(Integer.parseInt(id),Integer.parseInt(roleuuid));
+                empRoleService.save(empRole);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(true,"更新角色权限失败",null);
+        }
+        // 更新数据
+        return new Result(true,"更新角色权限成功",null);
+    }
+
+    /**
+     * 用户角色设置
+     * @param id
+     * @param checkedStr
+     * @return
+     */
     @RequestMapping(value = "/menu",method = RequestMethod.POST)
     public Result updateRoleMenu(String id,String checkedStr){
         try {
             // 获取权限数据
             String[] split = checkedStr.split(",");
+            // 清空中间表数据 根据用户id
             int num =roleMenuService.deleteById(id);
-            // 清空中间表数据
+
             for (String menuuuid : split) {
                 RoleMenu roleMenu = new RoleMenu(id,menuuuid);
                 roleMenuService.save(roleMenu);
