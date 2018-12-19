@@ -1,4 +1,6 @@
-package com.example.ERP.common;
+package com.example.ERP.service;
+
+import com.example.ERP.common.PageBean;
 
 import java.util.List;
 

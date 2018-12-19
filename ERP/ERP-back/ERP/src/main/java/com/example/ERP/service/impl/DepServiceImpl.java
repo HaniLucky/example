@@ -1,6 +1,5 @@
 package com.example.ERP.service.impl;
 
-import com.example.ERP.common.BaseServiceImpl;
 import com.example.ERP.mapper.DepMapper;
 import com.example.ERP.service.DepService;
 import com.example.ERP.vo.Dep;

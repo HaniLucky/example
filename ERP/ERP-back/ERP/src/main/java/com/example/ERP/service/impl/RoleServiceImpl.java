@@ -1,7 +1,5 @@
 package com.example.ERP.service.impl;
 
-import com.example.ERP.common.BaseServiceImpl;
-import com.example.ERP.common.Result;
 import com.example.ERP.mapper.MenuMapper;
 import com.example.ERP.mapper.RoleMapper;
 import com.example.ERP.service.MenuService;
@@ -11,8 +9,6 @@ import com.example.ERP.vo.Role;
 import com.example.ERP.vo.Tree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;

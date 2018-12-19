@@ -1,6 +1,5 @@
 package com.example.ERP.service.impl;
 
-import com.example.ERP.common.BaseServiceImpl;
 import com.example.ERP.service.GoodsService;
 import com.example.ERP.vo.Goods;
 import org.springframework.stereotype.Service;

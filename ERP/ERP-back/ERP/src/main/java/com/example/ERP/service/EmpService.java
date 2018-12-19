@@ -1,6 +1,5 @@
 package com.example.ERP.service;
 
-import com.example.ERP.common.BaseService;
 import com.example.ERP.common.PageBean;
 import com.example.ERP.vo.Emp;
 import com.example.ERP.vo.EmpVo;

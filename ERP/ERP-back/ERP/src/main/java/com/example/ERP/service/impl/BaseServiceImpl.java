@@ -1,5 +1,7 @@
-package com.example.ERP.common;
+package com.example.ERP.service.impl;
 
+import com.example.ERP.common.PageBean;
+import com.example.ERP.service.BaseService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

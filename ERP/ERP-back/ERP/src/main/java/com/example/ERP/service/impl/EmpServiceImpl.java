@@ -1,6 +1,5 @@
 package com.example.ERP.service.impl;
 
-import com.example.ERP.common.BaseServiceImpl;
 import com.example.ERP.common.PageBean;
 import com.example.ERP.mapper.EmpMapper;
 import com.example.ERP.service.EmpService;
@@ -12,7 +11,6 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
 import java.util.List;
 
 /**
