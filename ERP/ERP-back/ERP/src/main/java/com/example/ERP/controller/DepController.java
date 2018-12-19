@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +40,12 @@ public class DepController {
         return depService.queryAll();
     }
 
+    @GetMapping(value = "/{id}")
+    public Dep get(@PathVariable Long id){
+        return depService.queryById(id);
+    }
+
+
     @ApiOperation(value="新增部门", notes="新增部门")
     @PostMapping(value = "/")
     public Result add(@RequestBody Dep dep) {
@@ -59,10 +66,6 @@ public class DepController {
         return new Result(true,"更新成功",num);
     }
 
-    @GetMapping(value = "/{id}")
-    public Dep get(@PathVariable Long id){
-        return depService.queryById(id);
-    }
 
 
 
@@ -72,4 +75,17 @@ public class DepController {
     public void importExcel(){
         System.out.println("导入");
     }
+
+    @ApiOperation(value="测试同时实现查询所有和根据id查询", notes="测试同时实现查询所有和根据id查询")
+    @RequestMapping(value = {"/test/{id}","/test"},method = RequestMethod.GET)
+    // 127.0.0.1:8080/dep/test/1
+    // 127.0.0.1:8080/dep/test
+    public Object deps(@PathVariable( value = "id",required = false) String id) {
+        if(StringUtils.isEmpty(id)){ // ID为空查全部
+            return depService.queryAll();
+        }else { // 不为空根据id查询
+            return depService.queryById(id);
+        }
+    }
+
 }

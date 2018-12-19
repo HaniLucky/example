@@ -91,4 +91,33 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
         return trees;
     }
 
+    /**
+     * 读取用户角色
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Tree> readEmpRoles(String id) {
+        List<Tree> trees = new ArrayList<Tree>();
+        // 获取该用户的角色列表
+        List<Role> empRoleList = roleMapper.selectEmpRoleByEmpId(id);
+        List<Long> roles = new ArrayList<>();
+        for (Role role : empRoleList) {
+            roles.add(role.getUuid());
+        }
+        // 获取全部角色
+        List<Role> roleList = roleMapper.selectAll();
+        // 组装Tree
+        for (Role role : roleList) {
+            Tree tree = new Tree();
+            tree.setId(String.valueOf(role.getUuid()));
+            tree.setText(role.getName());
+            if (roles.contains(role.getUuid())){
+                tree.setChecked(true);
+            }
+            trees.add(tree);
+        }
+        return trees;
+    }
+
 }

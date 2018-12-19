@@ -12,4 +12,6 @@ import java.util.List;
 @Mapper
 public interface RoleMapper extends tk.mybatis.mapper.common.Mapper<Role>{
     List<Menu> selectRoleMeunByRoleId(String id);
+
+    List<Role> selectEmpRoleByEmpId(String id);
 }

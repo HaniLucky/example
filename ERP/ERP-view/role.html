@@ -27,7 +27,7 @@
 <body>
 <div class="easyui-panel">
 <form id="searchForm">
-	名称：<input name="t1.name" >
+	名称：<input name="name" >
 
 	<button type="button" id="btnSearch">查询</button>
 </form>
@@ -36,11 +36,11 @@
 <div id="editWindow" class="easyui-window" title="角色编辑" 
 	style="width: 300px;height: 200px" data-options="closed:true">
 	<form id="editForm">
-	<input name="t.uuid" type="hidden"> 
+	<input id="uuid" name="uuid" type="hidden"> 
 
 		<table>
 			<tr>
-				<td>名称</td><td><input name="t.name"> </td>
+				<td>名称</td><td><input name="name"> </td>
 			</tr>
 
 		</table>	

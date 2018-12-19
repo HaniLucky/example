@@ -8,6 +8,11 @@
         <result column="URL" property="url"></result>
         <result column="PID" property="pid"></result>
     </resultMap>
+    
+    <resultMap id="RoleResult" type="com.example.ERP.vo.Role">
+        <result property="uuid" column="UUID"></result>
+        <result property="name" column="NAME"></result>
+    </resultMap>
 
     <select id="selectRoleMeunByRoleId" parameterType="java.lang.String" resultMap="MenuResult">
         SELECT
@@ -23,6 +28,20 @@
         WHERE
             T1.UUID = T2.ROLEUUID
         AND T2.MENUUUID = T3.MENUID
+        AND T1.UUID = #{id}
+    </select>
+    
+    <select id="selectEmpRoleByEmpId" parameterType="java.lang.String" resultMap="RoleResult">
+        SELECT
+            T3.UUID AS UUID,
+            T3.NAME AS NAME
+        FROM
+            EMP T1,
+            EMP_ROLE T2,
+            ROLE T3
+        WHERE
+            T1.UUID = T2.EMPUUID
+        AND T2.ROLEUUID = T3.UUID
         AND T1.UUID = #{id}
     </select>
 </mapper>

@@ -13,4 +13,6 @@ public interface RoleService extends BaseService<Role>{
     List<Tree> readRoleMenus();
 
     List<Tree> readRoleMenus(String id);
+
+    List<Tree> readEmpRoles(String id);
 }

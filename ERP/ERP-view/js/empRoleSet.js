@@ -3,9 +3,10 @@ var clickRow=function(rowIndex,rowData){
 	
 	id=rowData.uuid;
 	$('#tree').tree({
-		url:'emp_readEmpRoles.action?id='+id,
+		url:'/api/tree/user/'+id,
 		animate:true,
-		checkbox:true
+		checkbox:true,
+		method:'get'
 	});
 	
 }
@@ -24,7 +25,7 @@ function save(){
 	}
 	
 	$.ajax({
-		url:'emp_updateEmpRoles.action',
+		url:'/api/role/role',
 		dataType:'json',
 		data:{'id':id,'checkedStr':checkedStr},
 		type:'post',

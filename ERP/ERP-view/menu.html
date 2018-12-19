@@ -8,6 +8,7 @@
 <script type="text/javascript" src="ui/jquery.min.js"></script>
 <script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
 <script type="text/javascript" src="js/form.js"></script>
 <script type="text/javascript" src="js/crud.js"></script>
 <script type="text/javascript">
@@ -30,10 +31,10 @@
 <body>
 <div class="easyui-panel">
 <form id="searchForm">
-	菜单名称：<input name="t1.menuname" >
-	图标：<input name="t1.icon" >
-	URL：<input name="t1.url" >
-	上级菜单ID：<input name="t1.pid" >
+	菜单名称：<input name="menuname" >
+	图标：<input name="icon" >
+	URL：<input name="url" >
+	上级菜单ID：<input name="pid" >
 
 	<button type="button" id="btnSearch">查询</button>
 </form>
@@ -42,20 +43,20 @@
 <div id="editWindow" class="easyui-window" title="菜单编辑" 
 	style="width: 300px;height: 200px" data-options="closed:true">
 	<form id="editForm">
-	<input name="t.menuid" type="hidden"> 
+	<input name="menuid" type="hidden"> 
 
 		<table>
 			<tr>
-				<td>菜单名称</td><td><input name="t.menuname"> </td>
+				<td>菜单名称</td><td><input name="menuname"> </td>
 			</tr>
 			<tr>
-				<td>图标</td><td><input name="t.icon"> </td>
+				<td>图标</td><td><input name="icon"> </td>
 			</tr>
 			<tr>
-				<td>URL</td><td><input name="t.url"> </td>
+				<td>URL</td><td><input name="url"> </td>
 			</tr>
 			<tr>
-				<td>上级菜单ID</td><td><input name="t.pid"> </td>
+				<td>上级菜单ID</td><td><input name="pid"> </td>
 			</tr>
 
 		</table>	
