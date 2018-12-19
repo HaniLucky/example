@@ -83,7 +83,4 @@ public class TreeController {
         return menuService.readMenuTreeByEmpId(id);
     }
 
-
-
-
 }
