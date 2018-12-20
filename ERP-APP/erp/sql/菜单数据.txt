@@ -8,3 +8,9 @@ INSERT INTO MENU VALUES('105','仓库','icon-sys','store.html','100');
 INSERT INTO MENU VALUES('200','人事管理','icon-sys','-','0');
 INSERT INTO MENU VALUES('201','部门','icon-sys','dep.html','200');
 INSERT INTO MENU VALUES('202','员工','icon-sys','emp.html','200');
+
+INSERT INTO MENU VALUES('400','权限设置','icon-sys','-','0');
+INSERT INTO MENU VALUES('401','菜单设置','icon-sys','menu.html','400');
+INSERT INTO MENU VALUES('402','角色设置','icon-sys','role.html','400');
+INSERT INTO MENU VALUES('403','员工角色设置','icon-sys','empRoleSet.html','400');
+INSERT INTO MENU VALUES('404','角色菜单设置','icon-sys','roleMenuSet.html','400');
