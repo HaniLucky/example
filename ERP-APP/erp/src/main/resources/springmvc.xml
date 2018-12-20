@@ -27,4 +27,6 @@
 		<property name="suffix" value=".html" />
 	</bean>
 
+	<!-- 启用默认的servlet 用来对应web.xml中的default-servlet -->
+	<mvc:default-servlet-handler />
 </beans>

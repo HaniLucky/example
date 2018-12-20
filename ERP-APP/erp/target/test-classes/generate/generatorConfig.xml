@@ -45,7 +45,11 @@
 		</javaClientGenerator>
 		
 		<!-- 指定数据库表 -->
-		<table schema="" tableName="dep" enableCountByExample="false"
+		<!-- <table schema="" tableName="dep" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table> -->
+		<table schema="" tableName="emp" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>

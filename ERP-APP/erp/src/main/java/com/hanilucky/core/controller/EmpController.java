@@ -11,58 +11,58 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hanilucky.common.PageBean;
 import com.hanilucky.common.Result;
-import com.hanilucky.core.service.DepService;
-import com.hanilucky.core.vo.Dep;
+import com.hanilucky.core.service.EmpService;
+import com.hanilucky.core.vo.Emp;
 
 @RestController
-@RequestMapping(value = "/dep")
-public class DepController {
+@RequestMapping(value = "/emp")
+public class EmpController {
 
 	@Autowired
-	private DepService depService;
+	private EmpService empService;
 
 	// 查询全部
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<Dep> list() {
-		return depService.list();
+	public List<Emp> list() {
+		return empService.list();
 	}
 
 	// 分页查询
 	@RequestMapping(value = "/page", method = RequestMethod.POST)
-	public PageBean<Dep> page(int page, int rows) {
-		return depService.page(page, rows);
+	public PageBean<Emp> page(int page, int rows) {
+		return empService.page(page, rows);
 	}
 
 	// 按条件分页
 	@RequestMapping(value = "/page/list", method = RequestMethod.POST)
-	public PageBean<Dep> pageList(Dep dep,int page, int rows) {
-		return depService.pageList(dep, page, rows);
+	public PageBean<Emp> pageList(Emp emp,int page, int rows) {
+		return empService.pageList(emp, page, rows);
 	}
 
 	// 新增
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public Result save(@RequestBody Dep dep) {
-		Integer num = depService.save(dep);
+	public Result save(@RequestBody Emp emp) {
+		Integer num = empService.save(emp);
 		return new Result(true, "新增成功", num);
 	}
 
 	// 删除
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Result delete(@PathVariable Integer id) {
-		Integer num = depService.delete(id);
+		Integer num = empService.delete(id);
 		return new Result(true, "删除成功", num);
 	}
 
 	// 修改
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
-	public Result update(@RequestBody Dep dep) {
-		Integer num = depService.update(dep);
+	public Result update(@RequestBody Emp emp) {
+		Integer num = empService.update(emp);
 		return new Result(true, "修改成功", num);
 	}
 
 	// 按id查询
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Dep queryById(@PathVariable Integer id) {
-		return depService.queryById(id);
+	public Emp queryById(@PathVariable Integer id) {
+		return empService.queryById(id);
 	}
 }

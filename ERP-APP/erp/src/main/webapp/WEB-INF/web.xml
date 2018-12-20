@@ -13,14 +13,9 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!-- <servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.js</url-pattern>
-		<url-pattern>*.css</url-pattern>
-		<url-pattern>/adminjs/*"</url-pattern>
-		<url-pattern>/images/*</url-pattern>
-		<url-pattern>/ui/*</url-pattern>
-	</servlet-mapping> -->
+	<!-- <servlet-mapping> <servlet-name>default</servlet-name> <url-pattern>*.js</url-pattern> 
+		<url-pattern>*.css</url-pattern> <url-pattern>/adminjs/*"</url-pattern> <url-pattern>/images/*</url-pattern> 
+		<url-pattern>/ui/*</url-pattern> </servlet-mapping> -->
 
 	<!-- post乱码过滤器 -->
 	<filter>
@@ -47,6 +42,15 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<!-- 默认servlet 需要在springmvc中开启支持  要在springmvc的DispatcherServlet之前加载 -->
+	<!-- <servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>/adminjs/*</url-pattern>
+		<url-pattern>/images/*</url-pattern>
+		<url-pattern>/ui/*</url-pattern>
+	</servlet-mapping> -->
 
 	<!-- 加载springmvc DispatcherServlet -->
 	<servlet>
@@ -57,12 +61,14 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:springmvc.xml</param-value>
 		</init-param>
+		<!-- <load-on-startup>1</load-on-startup> -->
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
 		<!-- 后缀形式可以随意 -->
 		<!-- 如果配置“/”拦截所有请求，springmvc中“/*”拦截所有请求，包括jsp “/”拦截所有请求，不包含jsp -->
 		<!-- <url-pattern>*.action</url-pattern> -->
-		<url-pattern>*.action</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
 </web-app>

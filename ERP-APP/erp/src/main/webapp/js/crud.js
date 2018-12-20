@@ -13,7 +13,7 @@ $(function(){
 	
 	//表格数据初始化
 	$('#grid').datagrid({
-		url:name+'/page/list.action'+listParam,
+		url:name+'/page/list'+listParam,
 		columns:columns,
 		singleSelect:true,
 		pagination:true,
@@ -67,13 +67,21 @@ $(function(){
 		}
 		
 		//表单searchForm的数据转换为json对象
-		var formdata=$('#editForm').serializeJSON();		
-		
+		var formdata=JSON.stringify($('#editForm').serializeJSON());	
+		// 根据method决定以post还是put请求后台
+		var methodType = '';
+		if(method=='add'){
+			methodType = 'POST';
+		}else if(method=='update'){
+			methodType = 'PUT';
+		}
 		$.ajax({
-			url:name+'_'+method+'.action'+saveParam,
+			url:name+'/'+saveParam,
 			data:formdata,
 			dataType:'json',
-			type:'post',
+			type:methodType,
+			// 传递json contentType需要声明为json   // 要不然会报错 415
+			contentType: "application/json",
 			success:function(value){
 				
 				if(value.success){
@@ -121,8 +129,10 @@ function dele(id){
 		if(r)
 		{
 			$.ajax({
-				url:name+'_delete.action?id='+id,
+				// dep/1.action
+				url:name+'/'+id,
 				dataType:'json',
+				method:'DELETE',
 				success:function(value){
 					if(value.success){
 						$('#grid').datagrid('reload');
@@ -141,6 +151,6 @@ function edit(id){
 	
 	$('#editWindow').window('open');
 	$('#editForm').form('clear');
-	$('#editForm').form('load',name+'_get.action?id='+id);	
+	$('#editForm').form('load',name+'/'+id);	
 	method="update";
 }
