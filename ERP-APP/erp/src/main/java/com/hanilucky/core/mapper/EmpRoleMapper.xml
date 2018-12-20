@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanilucky.core.mapper.EmpRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.hanilucky.core.vo.EmpRole" >
+    <id column="EMPUUID" property="empuuid" jdbcType="INTEGER" />
+    <id column="ROLEUUID" property="roleuuid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from emp_role
+    where EMPUUID = #{empuuid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hanilucky.core.vo.EmpRole" >
+    insert into emp_role (EMPUUID, ROLEUUID)
+    values (#{empuuid,jdbcType=INTEGER}, #{roleuuid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hanilucky.core.vo.EmpRole" >
+    insert into emp_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="empuuid != null" >
+        EMPUUID,
+      </if>
+      <if test="roleuuid != null" >
+        ROLEUUID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="empuuid != null" >
+        #{empuuid,jdbcType=INTEGER},
+      </if>
+      <if test="roleuuid != null" >
+        #{roleuuid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

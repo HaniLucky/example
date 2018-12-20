@@ -44,7 +44,7 @@ public class TreeController {
      * @param id 用户角色
      */
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    @ApiOperation(value = "获取用户角色",notes = "根据用户获取角色列表")
+    @ApiOperation(value = "获取用户角色", notes = "根据用户获取角色列表")
     public List<Tree> readEmpRoles(@PathVariable String id) {
         return roleService.readEmpRoles(id);
     }
@@ -55,7 +55,7 @@ public class TreeController {
      * @param id 角色
      */
     @RequestMapping(value = "/role/{id}", method = RequestMethod.GET)
-    @ApiOperation(value = "获取角色菜单",notes = "根据角色菜单数据")
+    @ApiOperation(value = "获取角色菜单", notes = "根据角色菜单数据")
     public List<Tree> readRoleMenus(@PathVariable String id) {
         return roleService.readRoleMenus(id);
     }
@@ -63,23 +63,25 @@ public class TreeController {
 
     /**
      * 根据用户id获取菜单树  第一种方式
+     *
      * @param id
      * @return
      */
     @RequestMapping(value = "/menu/{id}", method = RequestMethod.GET)
-    @ApiOperation(value = "根据用户id获取菜单树",notes = "根据用户id获取菜单树")
-    public Menu menuTreeByUserId2(@PathVariable(value = "id",required = true)@ApiParam(name = "id" ,value = "用户id",required=true) String id) {
-        return menuService.readMenuByEmpuuid(id);
+    @ApiOperation(value = "根据用户id获取菜单树", notes = "根据用户id获取菜单树")
+    public Menu menuTreeByUserId2(@PathVariable(value = "id", required = true) @ApiParam(name = "id", value = "用户id", required = true) String id) {
+        return menuService.readMenuByEmpUuid(id);
     }
 
     /**
      * 根据用户id获取菜单树  第二种方式
+     *
      * @param id
      * @return
      */
     @RequestMapping(value = "/menu2/{id}", method = RequestMethod.GET)
-    @ApiOperation(value = "根据用户id获取菜单树",notes = "根据用户id获取菜单树")
-    public Menu menuTreeByUserId(@PathVariable(value = "id",required = true)@ApiParam(name = "id" ,value = "用户id",required=true) String id) {
+    @ApiOperation(value = "根据用户id获取菜单树", notes = "根据用户id获取菜单树")
+    public Menu menuTreeByUserId(@PathVariable(value = "id", required = true) @ApiParam(name = "id", value = "用户id", required = true) String id) {
         return menuService.readMenuTreeByEmpId(id);
     }
 

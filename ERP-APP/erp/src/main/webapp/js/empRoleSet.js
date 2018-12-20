@@ -3,7 +3,8 @@ var clickRow=function(rowIndex,rowData){
 	
 	id=rowData.uuid;
 	$('#tree').tree({
-		url:'emp_readEmpRoles.action?id='+id,
+		url:'emp/role/'+id,
+		method:'GET',
 		animate:true,
 		checkbox:true
 	});
@@ -24,10 +25,10 @@ function save(){
 	}
 	
 	$.ajax({
-		url:'emp_updateEmpRoles.action',
+		url:'emp/role/',
 		dataType:'json',
 		data:{'id':id,'checkedStr':checkedStr},
-		type:'post',
+		type:'POST',
 		success:function(value){			
 			$.messager.alert("提示",value.message);			
 		}

@@ -18,4 +18,6 @@ public interface EmpMapper {
     int updateByPrimaryKey(Emp record);
 
 	List<Emp> selectList(Emp emp);
+
+	Emp login(Emp emp);
 }

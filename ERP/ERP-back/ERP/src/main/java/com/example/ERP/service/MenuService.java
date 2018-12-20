@@ -11,6 +11,6 @@ public interface MenuService  extends BaseService<Menu>{
     Menu readMenuTreeByEmpId(String id);
 
 
-    Menu readMenuByEmpuuid(String id);
+    Menu readMenuByEmpUuid(String id);
 
 }

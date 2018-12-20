@@ -21,4 +21,6 @@ public interface EmpService {
 
 	PageBean<Emp> pageList(Emp emp,int pageNum, int pageSize);
 
+	Emp login(Emp emp);
+
 }

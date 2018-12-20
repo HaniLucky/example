@@ -44,7 +44,7 @@ public class LoginController {
             return new Result(false, "登录失败", null);
         }
         HttpSession session = request.getSession();
-        session.setAttribute("user", emp);
+        session.setAttribute("user", user);
         return new Result(true, "登录成功", user);
     }
 
@@ -59,7 +59,7 @@ public class LoginController {
     public Result showName(HttpServletRequest request) {
         Emp user = (Emp) request.getSession().getAttribute("user");
         if (user != null) {
-            return new Result(true, user.getUsername(), null);
+            return new Result(true, user.getName(), null);
         }
         return new Result(false, null, null);
     }

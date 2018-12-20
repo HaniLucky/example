@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -20,10 +22,24 @@ public class FreeMarkerTest {
 	// 模板+数据=静态页面	
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception {
-		 Scanner sc = new Scanner(System.in); 
-         System.out.println("请输入你要生成的模块名："); 
-         String tempNm = sc.nextLine(); 
+//		 Scanner sc = new Scanner(System.in); 
+//         System.out.println("请输入你要生成的模块名："); 
+//         String tempNm = sc.nextLine(); 
          
+         List<String> tempNms = new ArrayList<String>();
+         tempNms.add("menu");
+         tempNms.add("role");
+         for (String tempNm : tempNms) {
+        	 createFtl(tempNm);
+		}
+		// createFtl(tempNm);
+
+	}
+
+
+
+	private static void createFtl(String tempNm) throws IOException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, TemplateException, Exception {
 		// 模块名
 		// String tempNm = "nation";
 		// 模块名全部小写
@@ -64,7 +80,6 @@ public class FreeMarkerTest {
 		createControllerTemp(tempNmUpper, contPath, contPrefix, contSuffix, valMap, cfg, contFtlFtlPath);
 		createServiceTemp(tempNmUpper, servicePath, servicePrefix, serviceSuffix, valMap, cfg, serviceFtlPath);
 		createServiceImplTemp(tempNmUpper, serviceImplPath, serviceImplPrefix, serviceImplSuffix, valMap, cfg, serviceImplFtlPath);
-
 	}
 
 	

@@ -60,4 +60,9 @@ public class EmpServiceImpl implements EmpService {
 		return new PageBean<Emp>(list, pageInfo.getTotal());
 	}
 
+	@Override
+	public Emp login(Emp emp) {
+		return empMapper.login(emp);
+	}
+
 }

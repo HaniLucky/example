@@ -62,7 +62,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
      * @return
      */
     @Override
-    public Menu readMenuByEmpuuid(String empuuid){
+    public Menu readMenuByEmpUuid(String empuuid){
         //1.获取所有的菜单
         Menu menu = menuTree();
         // 获取用户的菜单树  用户的菜单树没有层级关系

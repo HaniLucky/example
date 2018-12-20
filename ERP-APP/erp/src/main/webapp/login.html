@@ -17,7 +17,7 @@
 function login(){	
 	var formdata=$('#loginform').serializeJSON();	
 	$.ajax({
-		url:'login_checkUser.action',
+		url:'sso/login',
 		dataType:'json',
 		type:'post',
 		data:formdata,

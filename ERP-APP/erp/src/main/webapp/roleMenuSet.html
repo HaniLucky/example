@@ -13,7 +13,7 @@
 <body class="easyui-layout">
 
 <div data-options="region:'west',title:'请选择角色',split:true" style="width:215px;">
-	<table class="easyui-datagrid" data-options="url:'role_list.action',singleSelect:true,onClickRow:clickRow">
+	<table class="easyui-datagrid" data-options="url:'role/',singleSelect:true,onClickRow:clickRow,method:'get'">
 		<thead>
 			<tr>
 				<th data-options="field:'uuid',width:100">角色ID</th>

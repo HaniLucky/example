@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanilucky.core.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.hanilucky.core.vo.Menu">
+    <id column="MENUID" jdbcType="VARCHAR" property="menuid" />
+    <result column="MENUNAME" jdbcType="VARCHAR" property="menuname" />
+    <result column="ICON" jdbcType="VARCHAR" property="icon" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="PID" jdbcType="VARCHAR" property="pid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MENUID, MENUNAME, ICON, URL, PID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from menu
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hanilucky.core.vo.Menu">
+    insert into menu (MENUID, MENUNAME, ICON, 
+      URL, PID)
+    values (#{menuid,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hanilucky.core.vo.Menu">
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menuid != null">
+        MENUID,
+      </if>
+      <if test="menuname != null">
+        MENUNAME,
+      </if>
+      <if test="icon != null">
+        ICON,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="pid != null">
+        PID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menuid != null">
+        #{menuid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuname != null">
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanilucky.core.vo.Menu">
+    update menu
+    <set>
+      <if test="menuname != null">
+        MENUNAME = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hanilucky.core.vo.Menu">
+    update menu
+    set MENUNAME = #{menuname,jdbcType=VARCHAR},
+      ICON = #{icon,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=VARCHAR}
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </update>
+ 
+  
+  <select id="selectList" parameterType="com.hanilucky.core.vo.Menu" resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from menu
+    <where>
+   	  <if test="menuid != null and menuid != ''">
+       AND  MENUID=#{menuid,jdbcType=VARCHAR}
+      </if>
+      <if test="menuname != null and menuname != ''">
+       AND  MENUNAME = #{menuname,jdbcType=VARCHAR}
+      </if>
+      <if test="icon != null and icon != ''">
+       AND ICON = #{icon,jdbcType=VARCHAR}
+      </if>
+      <if test="url != null and url != ''">
+       AND  URL= #{url,jdbcType=VARCHAR}
+      </if>
+      <if test="pid != null and pid != ''">
+       AND PID = #{pid,jdbcType=VARCHAR}
+      </if>
+   </where>
+  </select>
+  
+  
+    
+    <select id="selectRoleMeunByRoleId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+            T3.MENUID AS MENUID,
+            T3.MENUNAME AS MENUNAME,
+            T3.ICON AS ICON,
+            T3.URL AS URL,
+            T3.PID AS PID
+        FROM
+            ROLE T1,
+            ROLE_MENU T2,
+            MENU T3
+        WHERE
+            T1.UUID = T2.ROLEUUID
+        AND T2.MENUUUID = T3.MENUID
+        AND T1.UUID = #{id}
+    </select>
+</mapper>

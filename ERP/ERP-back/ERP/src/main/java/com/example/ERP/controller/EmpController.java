@@ -7,6 +7,7 @@ import com.example.ERP.vo.Emp;
 import com.example.ERP.vo.EmpVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +43,8 @@ public class EmpController {
     @ApiOperation(value="新增数据", notes="新增数据")
     @PostMapping(value = "/")
     public Result add(@RequestBody Emp emp) {
+        // 初始化密码为用户名
+        emp.setPwd(new Md5Hash(emp.getUsername(),emp.getUsername(),2).toString());
         return new Result(true, "添加成功", empService.save(emp));
     }
 
