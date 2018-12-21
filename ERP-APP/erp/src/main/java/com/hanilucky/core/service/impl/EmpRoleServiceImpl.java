@@ -20,7 +20,6 @@ public class EmpRoleServiceImpl implements EmpRoleService {
 	@Override
 	public Integer save(EmpRole empRole) {
 		return empRoleMapper.insertSelective(empRole);
-		
 	}
 
 	

@@ -133,4 +133,23 @@
         AND T2.MENUUUID = T3.MENUID
         AND T1.UUID = #{id}
     </select>
+
+	<!-- 查询用户菜单 -->
+	<select id="selectEmpMenus" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		SELECT
+		T5.MENUID AS MENUID,
+		T5.MENUNAME AS MENUNAME,
+		T5.ICON AS ICON,
+		T5.URL AS URL,
+		T5.PID AS PID
+		FROM
+		emp T1
+		LEFT JOIN emp_role T2 ON T1.UUID = T2.EMPUUID
+		LEFT JOIN role T3 ON T2.ROLEUUID = T3.UUID
+		LEFT JOIN role_menu T4 ON T3.UUID = T4.ROLEUUID
+		LEFT JOIN menu T5 ON T5.MENUID = T4.MENUUUID
+		WHERE
+		T1.UUID = #{id}
+	</select>
 </mapper>

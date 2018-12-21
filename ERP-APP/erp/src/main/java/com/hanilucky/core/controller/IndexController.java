@@ -12,6 +12,10 @@ import com.hanilucky.core.service.MenuService;
 import com.hanilucky.core.vo.Emp;
 import com.hanilucky.core.vo.Menu;
 
+/**
+ * @author Administrator
+ *	首页调用方法
+ */
 @RestController
 @RequestMapping(value = "/index")
 public class IndexController {
@@ -22,11 +26,21 @@ public class IndexController {
 	 /**
      * 获取菜单树
      */
-    @RequestMapping(value = "/meunTree", method = RequestMethod.GET)
+    // @RequestMapping(value = "/meunTree", method = RequestMethod.GET)
     public Menu meunTree() {
         return menuService.menuTree();
     }
 	
+    /**
+     * 根据用户获取菜单树
+     */
+    @RequestMapping(value = "/meunTree", method = RequestMethod.GET)
+    public Menu menuTreeByUserId2(HttpServletRequest request) {
+    	// 从session中获取用户id
+    	Emp user = (Emp) request.getSession().getAttribute("user");
+        return menuService.readMenuByEmpUuid(user.getUuid());
+    }
+    
 	/**
      * 返回用户名
      *
@@ -49,6 +63,19 @@ public class IndexController {
     public Result logout(HttpServletRequest request) {
         request.getSession().removeAttribute("user");
         return new Result(true, "SUCCESS", null);
+    }
+    
+    
+    /**
+     * 根据用户id获取菜单树  第二种方式
+     *	(暂时未实现)
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/menu2", method = RequestMethod.GET)
+    public Menu menuTreeByUserId(HttpServletRequest request) {
+    	Emp user = (Emp) request.getSession().getAttribute("user");
+        return menuService.readMenuTreeByEmpId(user.getUuid());
     }
 
 

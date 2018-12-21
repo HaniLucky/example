@@ -20,4 +20,6 @@ public interface MenuMapper {
 	List<Menu> selectList(Menu menu);
 
 	List<Menu> selectRoleMeunByRoleId(String id);
+
+	List<Menu> selectEmpMenus(Integer empuuid);
 }

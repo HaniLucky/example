@@ -3,6 +3,7 @@ package com.hanilucky.core.service;
 import java.util.List;
 
 import com.hanilucky.common.PageBean;
+import com.hanilucky.common.Result;
 import com.hanilucky.core.vo.Emp;
 
 public interface EmpService {
@@ -22,5 +23,7 @@ public interface EmpService {
 	PageBean<Emp> pageList(Emp emp,int pageNum, int pageSize);
 
 	Emp login(Emp emp);
+
+	Result updatePwd(Emp emp);
 
 }

@@ -23,6 +23,10 @@ public interface MenuService {
 
 	Menu menuTree();
 
+	Menu readMenuByEmpUuid(Integer id);
+
+	Menu readMenuTreeByEmpId(Integer id);
+
 
 	
 

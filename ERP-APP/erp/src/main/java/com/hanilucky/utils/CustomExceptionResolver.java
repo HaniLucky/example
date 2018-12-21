@@ -25,8 +25,8 @@ public class CustomExceptionResolver implements HandlerExceptionResolver{
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("message", customException.getMessage());
+		// 跳转/下的 error.html
 		modelAndView.setViewName("error");
-		
 		return modelAndView;
 	}
 

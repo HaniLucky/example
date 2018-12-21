@@ -45,7 +45,7 @@
 		</javaClientGenerator>
 		
 		<!-- 指定数据库表 -->
-		 <table schema="" tableName="role_menu" enableCountByExample="false"
+		 <table schema="" tableName="goodstype" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table> 

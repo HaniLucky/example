@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanilucky.core.mapper.GoodstypeMapper" >
+  <resultMap id="BaseResultMap" type="com.hanilucky.core.vo.Goodstype" >
+    <id column="UUID" property="uuid" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UUID, `NAME`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goodstype
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goodstype
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hanilucky.core.vo.Goodstype" >
+    insert into goodstype (UUID, `NAME`)
+    values (#{uuid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hanilucky.core.vo.Goodstype" >
+    insert into goodstype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="name != null" >
+        `NAME`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanilucky.core.vo.Goodstype" >
+    update goodstype
+    <set >
+      <if test="name != null" >
+        `NAME` = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hanilucky.core.vo.Goodstype" >
+    update goodstype
+    set `NAME` = #{name,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectList" parameterType="com.hanilucky.core.vo.Goodstype"
+	resultMap="BaseResultMap">
+	select
+	<include refid="Base_Column_List" />
+	from goodstype
+	<where>
+		<if test="uuid != null">
+			AND UUID = #{name,jdbcType=INTEGER}
+		</if>
+		<if test="name != null and name != ''">
+			AND `NAME` = #{name,jdbcType=VARCHAR},
+		</if>
+	</where>
+</select>
+</mapper>

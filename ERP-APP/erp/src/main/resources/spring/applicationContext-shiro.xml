@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd"> 
+						
+	<!-- Shiro的过滤器工程Bean：间接的加载9个内置过滤器 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">		
+		<!-- 安全管理器：Shiro的核心组件 -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- 认证相关：指定登录页面，当用户未登录时访问资源，则自动跳转到此页面 -->		
+		<property name="loginUrl" value="/login.html" /> 
+		<!-- 授权相关：指定错误页面，当用户登陆后访问没有权限资源，自动跳转此页面 -->
+		<property name="unauthorizedUrl" value="/error.html" /> 
+		<!-- 用自定义过滤器替换默认perms的过滤规则 -->
+<!-- 	<property name="filters">
+			<map>
+				<entry key="perms" value-ref="myFilter" />
+			</map>
+		</property> -->
+
+		<!-- 过滤器链定义：指定页面的访问规则 -->
+		<property name="filterChainDefinitions">
+			<value>
+				<!-- 配置时注意包含关系，小范围的放上面 -->					
+				/error.html = anon								
+				/*.html = authc
+				/*.action = authc
+				/* = authc							
+			</value>
+		</property>
+	</bean>
+	
+	<!-- Shiro的安全管理器 是shiro的大脑-->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="myRealm" ref="myRealm"></property>
+	</bean>
+	
+	
+</beans>

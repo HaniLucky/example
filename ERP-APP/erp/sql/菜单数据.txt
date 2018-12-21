@@ -14,3 +14,23 @@ INSERT INTO MENU VALUES('401','菜单设置','icon-sys','menu.html','400');
 INSERT INTO MENU VALUES('402','角色设置','icon-sys','role.html','400');
 INSERT INTO MENU VALUES('403','员工角色设置','icon-sys','empRoleSet.html','400');
 INSERT INTO MENU VALUES('404','角色菜单设置','icon-sys','roleMenuSet.html','400');
+
+
+
+
+INSERT INTO MENU VALUES('300','权限设置','icon-sys','-','0');
+INSERT INTO MENU VALUES('301','增加订单','icon-sys','order_add.html','300');
+INSERT INTO MENU VALUES('302','订单明细管理','icon-sys','orderdetail.html','300');
+INSERT INTO MENU VALUES('303','销售统计表','icon-sys','orderreport.html','300');
+INSERT INTO MENU VALUES('304','采购订单审核','icon-sys','orders_0.html','300');
+INSERT INTO MENU VALUES('305','采购订单审核','icon-sys','orders_0.html','300');
+INSERT INTO MENU VALUES('306','采购订单确认','icon-sys','orders_1.html','300');
+INSERT INTO MENU VALUES('307','订单出入库','icon-sys','orders_2.html','300');
+INSERT INTO MENU VALUES('308','订单查询','icon-sys','orders_bak.html','300');
+INSERT INTO MENU VALUES('309','采购订单查询','icon-sys','orders.html','300');
+INSERT INTO MENU VALUES('310','仓库管理','icon-sys','store.html','300');
+INSERT INTO MENU VALUES('311','库存预警','icon-sys','storealert.html','300');
+INSERT INTO MENU VALUES('312','仓库库存查询','icon-sys','storedetail.html','300');
+INSERT INTO MENU VALUES('313','仓库操作记录查询','icon-sys','storeoper.html','300');
+INSERT INTO MENU VALUES('314','供应商及客户管理','icon-sys','supplier.html','300');
+INSERT INTO MENU VALUES('405','管理员重置密码','icon-sys','pwd.html','400');

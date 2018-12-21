@@ -2,12 +2,14 @@ package com.hanilucky.core.service.impl;
 
 import java.util.List;
 
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hanilucky.common.PageBean;
+import com.hanilucky.common.Result;
 import com.hanilucky.core.mapper.EmpMapper;
 import com.hanilucky.core.service.EmpService;
 import com.hanilucky.core.vo.Emp;
@@ -63,6 +65,20 @@ public class EmpServiceImpl implements EmpService {
 	@Override
 	public Emp login(Emp emp) {
 		return empMapper.login(emp);
+	}
+
+	@Override
+	public Result updatePwd(Emp emp) {
+		// 获取用户信息
+		Emp userInfo = queryById(emp.getUuid());
+		if(userInfo == null ){
+			return new Result(false, "用户不存在", null);
+		}
+		// 新密码加密
+		emp.setPwd(new Md5Hash(emp.getPwd(),userInfo.getUsername(),2).toString());
+		Integer num = update(emp);
+		// 更新数据
+		return new Result(true, "密码修改成功", null);
 	}
 
 }

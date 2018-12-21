@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanilucky.core.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.hanilucky.core.vo.Goods" >
+    <id column="UUID" property="uuid" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="ORIGIN" property="origin" jdbcType="VARCHAR" />
+    <result column="PRODUCER" property="producer" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="INPRICE" property="inprice" jdbcType="DECIMAL" />
+    <result column="OUTPRICE" property="outprice" jdbcType="DECIMAL" />
+    <result column="GOODSTYPEUUID" property="goodstypeuuid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UUID, NAME, ORIGIN, PRODUCER, UNIT, INPRICE, OUTPRICE, GOODSTYPEUUID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hanilucky.core.vo.Goods" >
+    insert into goods (UUID, NAME, ORIGIN, 
+      PRODUCER, UNIT, INPRICE, 
+      OUTPRICE, GOODSTYPEUUID)
+    values (#{uuid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, 
+      #{producer,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{inprice,jdbcType=DECIMAL}, 
+      #{outprice,jdbcType=DECIMAL}, #{goodstypeuuid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hanilucky.core.vo.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="origin != null" >
+        ORIGIN,
+      </if>
+      <if test="producer != null" >
+        PRODUCER,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="inprice != null" >
+        INPRICE,
+      </if>
+      <if test="outprice != null" >
+        OUTPRICE,
+      </if>
+      <if test="goodstypeuuid != null" >
+        GOODSTYPEUUID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="producer != null" >
+        #{producer,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="inprice != null" >
+        #{inprice,jdbcType=DECIMAL},
+      </if>
+      <if test="outprice != null" >
+        #{outprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodstypeuuid != null" >
+        #{goodstypeuuid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanilucky.core.vo.Goods" >
+    update goods
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        ORIGIN = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="producer != null" >
+        PRODUCER = #{producer,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="inprice != null" >
+        INPRICE = #{inprice,jdbcType=DECIMAL},
+      </if>
+      <if test="outprice != null" >
+        OUTPRICE = #{outprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodstypeuuid != null" >
+        GOODSTYPEUUID = #{goodstypeuuid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hanilucky.core.vo.Goods" >
+    update goods
+    set NAME = #{name,jdbcType=VARCHAR},
+      ORIGIN = #{origin,jdbcType=VARCHAR},
+      PRODUCER = #{producer,jdbcType=VARCHAR},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      INPRICE = #{inprice,jdbcType=DECIMAL},
+      OUTPRICE = #{outprice,jdbcType=DECIMAL},
+      GOODSTYPEUUID = #{goodstypeuuid,jdbcType=DECIMAL}
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    <where>
+      <if test="uuid != null" >
+      UUID = #{uuid,jdbcType=INTEGER}
+      </if>
+      <if test="name != null and name != ''" >
+      `NAME` = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="origin != null and origin != ''" >
+      ORIGIN = #{origin,jdbcType=VARCHAR}
+      </if>
+      <if test="producer != null and producer != ''" >
+      PRODUCER = #{producer,jdbcType=VARCHAR}
+      </if>
+      <if test="unit != null and unit != ''" >
+      UNIT = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="inprice != null" >
+      INPRICE = #{inprice,jdbcType=DECIMAL}
+      </if>
+      <if test="outprice != null" >
+      OUTPRICE = #{outprice,jdbcType=DECIMAL}
+      </if>
+      <if test="goodstypeuuid != null" >
+      GOODSTYPEUUID = #{goodstypeuuid,jdbcType=DECIMAL}
+      </if>
+    </where>
+  </select>
+</mapper>

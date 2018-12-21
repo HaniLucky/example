@@ -1,7 +1,8 @@
 $(function(){
 	
 	$('#grid').datagrid({
-		url:'emp_listByPage.action',
+		url:'emp/',
+		method:'get',
 		columns:[[
 		  		    {field:'uuid',title:'编号',width:100},
 		  		    {field:'username',title:'登陆名',width:100},
@@ -39,12 +40,14 @@ $(function(){
 	//保存密码
 	$('#btnSave').bind('click',function(){
 		
-		var formdata=$('#updatePwdForm').serializeJSON();	
+		var formdata=JSON.stringify($('#updatePwdForm').serializeJSON());	
 		$.ajax({
-			url:'emp_updatePwd_reset.action',
+			url:'emp/pwd',
 			dataType:'json',
-			type:'post',
+			type:'PUT',
 			data:formdata,
+			// 传递json contentType需要声明为json   // 要不然会报错 415
+			contentType: "application/json",
 			success:function(value){
 				if(value.success){
 					$('#updatePwdWindow').window('close');
@@ -63,8 +66,8 @@ $(function(){
  * 打开重置密码窗口
  * @param id
  */
-function updatePwd_reset(id){
+function updatePwd_reset(uuid){
 	$('#updatePwdWindow').window('open');
 	//给隐藏域赋值，把密码清空
-	$('#updatePwdForm').form("load",{id:id,newPwd:''});	
+	$('#updatePwdForm').form("load",{uuid:uuid,pwd:''});	
 }
