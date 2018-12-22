@@ -13,7 +13,7 @@ $(function(){
 	showName();//显示姓名
 	
 	$.ajax({
-		url:'index/meunTree',
+		url:'index/meunTree/shiro',
 		dataType:'json',
 		success:function(value){
 			_menus=value;
@@ -29,7 +29,7 @@ $(function(){
 	$('#loginOut').bind('click',function(){
 		
 		$.ajax({
-			url:'index/logout',
+			url:'index/logout/shiro',
 			success:function(value){
 				location.href="login.html";
 			}			
@@ -45,7 +45,7 @@ $(function(){
 function showName(){
 	
 	$.ajax({
-		url:'index/showName',
+		url:'index/showName/shiro',
 		dataType:'json',
 		success:function(value){
 			if(value.success){

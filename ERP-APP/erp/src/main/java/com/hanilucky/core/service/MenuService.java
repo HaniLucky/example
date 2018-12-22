@@ -27,6 +27,8 @@ public interface MenuService {
 
 	Menu readMenuTreeByEmpId(Integer id);
 
+	List<Menu> readEmpMenuByEmpId(Integer uuid);
+
 
 	
 

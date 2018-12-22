@@ -27,7 +27,7 @@ public class LoginController {
 
 	/**
 	 * 登录
-	 *
+	 * 不使用shiro完成登陆  无法对权限保护
 	 * @param emp
 	 * @param request
 	 * @param response
@@ -48,7 +48,7 @@ public class LoginController {
 	
 	/**
 	 * 登录
-	 *
+	 * shiro登陆
 	 * @param emp
 	 * @param request
 	 * @param response
@@ -63,6 +63,7 @@ public class LoginController {
 		// 获取subject(主题,当前用户的操作类,封装了一系列的操作,应用程序与shiro交互的入口部门)
 		Subject subject = SecurityUtils.getSubject();
 		try {
+			// 调用自定义realm的认证方法(doGetAuthenticationInfo)
 			subject.login(token);
 			return new Result(true, "登录成功", null);
 		} catch (AuthenticationException e) {

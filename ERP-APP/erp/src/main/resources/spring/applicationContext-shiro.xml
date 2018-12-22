@@ -12,8 +12,11 @@
 		<property name="loginUrl" value="/login.html" /> 
 		<!-- 授权相关：指定错误页面，当用户登陆后访问没有权限资源，自动跳转此页面 -->
 		<property name="unauthorizedUrl" value="/error.html" /> 
+		<!-- 登录成功后跳转的页面 -->
+		<!-- 前端已经进行了页面跳转  不需要shiro来做跳转了 -->
+		<!-- <property name="successUrl" value="/index.html"></property> -->
 		<!-- 用自定义过滤器替换默认perms的过滤规则 -->
-<!-- 	<property name="filters">
+		<!-- <property name="filters">
 			<map>
 				<entry key="perms" value-ref="myFilter" />
 			</map>
@@ -22,19 +25,36 @@
 		<!-- 过滤器链定义：指定页面的访问规则 -->
 		<property name="filterChainDefinitions">
 			<value>
-				<!-- 配置时注意包含关系，小范围的放上面 -->					
-				/error.html = anon								
+				<!-- 测试perms 系统中没有这个权限 -->
+				<!-- /dep/** = perms["testPerms"] -->
+				<!-- /dep/**=perms["testPerms"] -->
+				<!-- 前端资源权限end -->
+				/error.html = anon
+				/adminjs/** = anon
+				/css/** = anon
+				/images/** =anon
+				/js/** =anon
+				/ui/** = anon
+				<!-- 前端资源权限end -->
+				<!-- 登录接口放开 -->
+				/sso/login/* = anon
+				<!-- 第二组过滤器需要经过第一组的过滤器之后才会起作用 -->
+				/dep/**=perms["testPerms"]
+				<!-- 余下所有页面都需要登录访问 -->
+				<!-- 明明配置了拦截.html但是首頁还是能直接访问  需要再单独配置遍，不知道为什么 -->
+				<!-- /index.html = authc -->
 				/*.html = authc
-				/*.action = authc
-				/* = authc							
+				/* = authc
+				<!-- 余下的所有接口都要认证只有才能访问 -->
+				/** = authc
 			</value>
 		</property>
 	</bean>
 	
 	<!-- Shiro的安全管理器 是shiro的大脑-->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="myRealm" ref="myRealm"></property>
+		<property name="realm" ref="myRealm"></property>
 	</bean>
-	
+	<bean id="myRealm" class="com.hanilucky.shiro.MyRealm"/>
 	
 </beans>

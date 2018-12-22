@@ -84,7 +84,7 @@ public class MenuServiceImpl implements MenuService {
 	public Menu readMenuByEmpUuid(Integer empuuid) {
 		// 1.获取所有的菜单
 		Menu menu = menuTree();
-		// 获取用户的菜单树 用户的菜单树没有层级关系
+		// 获取用户的菜单列表
 		List<Menu> userMenuList = menuMapper.selectEmpMenus(empuuid);
 		List<String> userMenuUuids = new ArrayList<>();
 		for (Menu menu1 : userMenuList) {
@@ -170,6 +170,14 @@ public class MenuServiceImpl implements MenuService {
 		menu.setUrl(sourceMenu.getUrl());
 		menu.setMenus(new ArrayList<>());
 		return menu;
+	}
+
+	/**
+	 * 根据用户id获取菜单权限
+	 */
+	@Override
+	public List<Menu> readEmpMenuByEmpId(Integer uuid) {
+		return menuMapper.selectEmpMenus(uuid);
 	}
 
 }
