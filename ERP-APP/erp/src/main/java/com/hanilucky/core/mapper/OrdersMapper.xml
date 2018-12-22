@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanilucky.core.mapper.OrdersMapper">
+	<resultMap id="BaseResultMap" type="com.hanilucky.core.vo.Orders">
+		<id column="UUID" property="uuid" jdbcType="INTEGER" />
+		<result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="CHECKTIME" property="checktime" jdbcType="TIMESTAMP" />
+		<result column="STARTTIME" property="starttime" jdbcType="TIMESTAMP" />
+		<result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+		<result column="TYPE" property="type" jdbcType="CHAR" />
+		<result column="CREATER" property="creater" jdbcType="DECIMAL" />
+		<result column="CHECKER" property="checker" jdbcType="DECIMAL" />
+		<result column="STARTER" property="starter" jdbcType="DECIMAL" />
+		<result column="ENDER" property="ender" jdbcType="DECIMAL" />
+		<result column="SUPPLIERUUID" property="supplieruuid" jdbcType="DECIMAL" />
+		<result column="TOTALMONEY" property="totalmoney" jdbcType="DECIMAL" />
+		<result column="STATE" property="state" jdbcType="CHAR" />
+		<result column="WAYBILLSN" property="waybillsn" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		UUID, CREATETIME, CHECKTIME, STARTTIME, ENDTIME, TYPE, CREATER, CHECKER,
+		STARTER,
+		ENDER, SUPPLIERUUID, TOTALMONEY, STATE, WAYBILLSN
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from orders
+		where UUID = #{uuid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from orders
+		where UUID = #{uuid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.hanilucky.core.vo.Orders">
+		insert into orders (UUID, CREATETIME, CHECKTIME,
+		STARTTIME, ENDTIME, TYPE,
+		CREATER, CHECKER, STARTER,
+		ENDER, SUPPLIERUUID, TOTALMONEY,
+		STATE, WAYBILLSN)
+		values (#{uuid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+		#{checktime,jdbcType=TIMESTAMP},
+		#{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{type,jdbcType=CHAR},
+		#{creater,jdbcType=DECIMAL}, #{checker,jdbcType=DECIMAL},
+		#{starter,jdbcType=DECIMAL},
+		#{ender,jdbcType=DECIMAL}, #{supplieruuid,jdbcType=DECIMAL}, #{totalmoney,jdbcType=DECIMAL},
+		#{state,jdbcType=CHAR}, #{waybillsn,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hanilucky.core.vo.Orders">
+		insert into orders
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="uuid != null">
+				UUID,
+			</if>
+			<if test="createtime != null">
+				CREATETIME,
+			</if>
+			<if test="checktime != null">
+				CHECKTIME,
+			</if>
+			<if test="starttime != null">
+				STARTTIME,
+			</if>
+			<if test="endtime != null">
+				ENDTIME,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+			<if test="creater != null">
+				CREATER,
+			</if>
+			<if test="checker != null">
+				CHECKER,
+			</if>
+			<if test="starter != null">
+				STARTER,
+			</if>
+			<if test="ender != null">
+				ENDER,
+			</if>
+			<if test="supplieruuid != null">
+				SUPPLIERUUID,
+			</if>
+			<if test="totalmoney != null">
+				TOTALMONEY,
+			</if>
+			<if test="state != null">
+				STATE,
+			</if>
+			<if test="waybillsn != null">
+				WAYBILLSN,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="uuid != null">
+				#{uuid,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="checktime != null">
+				#{checktime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="starttime != null">
+				#{starttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endtime != null">
+				#{endtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=CHAR},
+			</if>
+			<if test="creater != null">
+				#{creater,jdbcType=DECIMAL},
+			</if>
+			<if test="checker != null">
+				#{checker,jdbcType=DECIMAL},
+			</if>
+			<if test="starter != null">
+				#{starter,jdbcType=DECIMAL},
+			</if>
+			<if test="ender != null">
+				#{ender,jdbcType=DECIMAL},
+			</if>
+			<if test="supplieruuid != null">
+				#{supplieruuid,jdbcType=DECIMAL},
+			</if>
+			<if test="totalmoney != null">
+				#{totalmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=CHAR},
+			</if>
+			<if test="waybillsn != null">
+				#{waybillsn,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hanilucky.core.vo.Orders">
+		update orders
+		<set>
+			<if test="createtime != null">
+				CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="checktime != null">
+				CHECKTIME = #{checktime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="starttime != null">
+				STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endtime != null">
+				ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=CHAR},
+			</if>
+			<if test="creater != null">
+				CREATER = #{creater,jdbcType=DECIMAL},
+			</if>
+			<if test="checker != null">
+				CHECKER = #{checker,jdbcType=DECIMAL},
+			</if>
+			<if test="starter != null">
+				STARTER = #{starter,jdbcType=DECIMAL},
+			</if>
+			<if test="ender != null">
+				ENDER = #{ender,jdbcType=DECIMAL},
+			</if>
+			<if test="supplieruuid != null">
+				SUPPLIERUUID = #{supplieruuid,jdbcType=DECIMAL},
+			</if>
+			<if test="totalmoney != null">
+				TOTALMONEY = #{totalmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=CHAR},
+			</if>
+			<if test="waybillsn != null">
+				WAYBILLSN = #{waybillsn,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where UUID = #{uuid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hanilucky.core.vo.Orders">
+		update orders
+		set CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+		CHECKTIME = #{checktime,jdbcType=TIMESTAMP},
+		STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+		ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+		TYPE = #{type,jdbcType=CHAR},
+		CREATER = #{creater,jdbcType=DECIMAL},
+		CHECKER = #{checker,jdbcType=DECIMAL},
+		STARTER = #{starter,jdbcType=DECIMAL},
+		ENDER = #{ender,jdbcType=DECIMAL},
+		SUPPLIERUUID = #{supplieruuid,jdbcType=DECIMAL},
+		TOTALMONEY = #{totalmoney,jdbcType=DECIMAL},
+		STATE = #{state,jdbcType=CHAR},
+		WAYBILLSN = #{waybillsn,jdbcType=DECIMAL}
+		where UUID = #{uuid,jdbcType=INTEGER}
+	</update>
+	
+	<select id="selectList" resultMap="BaseResultMap" parameterType="com.hanilucky.core.vo.Orders">
+		select
+		<include refid="Base_Column_List" />
+		from orders
+		<where>
+			<if test="supplieruuid != null">
+				AND UUID = #{uuid,jdbcType=INTEGER}
+			</if>
+			<if test="createtime != null">
+				AND CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="checktime != null">
+				AND CHECKTIME = #{checktime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="starttime != null">
+				AND STARTTIME = #{starttime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="endtime != null">
+				AND ENDTIME = #{endtime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="type != null and type != ''">
+				AND TYPE = #{type,jdbcType=CHAR}
+			</if>
+			<if test="creater != null">
+				AND CREATER = #{creater,jdbcType=DECIMAL}
+			</if>
+			<if test="checker != null">
+				AND CHECKER = #{checker,jdbcType=DECIMAL}
+			</if>
+			<if test="starter != null">
+				AND STARTER = #{starter,jdbcType=DECIMAL}
+			</if>
+			<if test="ender != null">
+				AND ENDER = #{ender,jdbcType=DECIMAL}
+			</if>
+			<if test="supplieruuid != null">
+				AND SUPPLIERUUID = #{supplieruuid,jdbcType=DECIMAL}
+			</if>
+			<if test="totalmoney != null">
+				AND TOTALMONEY = #{totalmoney,jdbcType=DECIMAL}
+			</if>
+			<if test="state != null and state != ''">
+				AND STATE = #{state,jdbcType=CHAR}
+			</if>
+			<if test="waybillsn != null">
+				AND WAYBILLSN = #{waybillsn,jdbcType=DECIMAL}
+			</if>
+		</where>
+	</select>
+
+</mapper>

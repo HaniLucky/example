@@ -48,6 +48,10 @@ public class RoleMenuController {
 	            e.printStackTrace();
 	            return new Result(true,"更新角色权限失败",null);
 	        }
+	        // 删除redis用户菜单缓存
+	        // 拥有该角色的用户
+	        // 循环删除
+			// jedis.del("menuTree"+id);
 	        // 更新数据
 	        return new Result(true,"更新角色权限成功",null);
 	    }

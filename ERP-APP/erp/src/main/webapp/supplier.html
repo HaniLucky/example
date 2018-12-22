@@ -37,18 +37,20 @@
 	if(Request['type']=='2'){
 		document.title='客户管理';
 	}
-	var listParam='?t1.type='+Request['type'];
-	var saveParam='?t.type='+Request['type'];
+	/* var listParam='?type='+Request['type'];
+	var saveParam='?type='+Request['type']; */
+	var listParam='/'+Request['type'];
+	var saveParam=Request['type'];
 </script>
 </head>
 <body>
 <div class="easyui-panel">
 <form id="searchForm">
-	名称：<input name="t1.name" >
-	地址：<input name="t1.address" >
-	联系人：<input name="t1.contact" >
-	电话：<input name="t1.tele" >
-	EMAIL：<input name="t1.email" >
+	名称：<input name="name" >
+	地址：<input name="address" >
+	联系人：<input name="contact" >
+	电话：<input name="tele" >
+	EMAIL：<input name="email" >
 	<button type="button" id="btnSearch">查询</button>
 </form>
 </div>
@@ -56,23 +58,23 @@
 <div id="editWindow" class="easyui-window" title="编辑" 
 	style="width: 300px;height: 200px" data-options="closed:true">
 	<form id="editForm">
-	<input name="t.uuid" type="hidden"> 
+	<input name="uuid" type="hidden"> 
 
 		<table>
 			<tr>
-				<td>名称</td><td><input name="t.name"> </td>
+				<td>名称</td><td><input name="name"> </td>
 			</tr>
 			<tr>
-				<td>地址</td><td><input name="t.address"> </td>
+				<td>地址</td><td><input name="address"> </td>
 			</tr>
 			<tr>
-				<td>联系人</td><td><input name="t.contact"> </td>
+				<td>联系人</td><td><input name="contact"> </td>
 			</tr>
 			<tr>
-				<td>电话</td><td><input name="t.tele"> </td>
+				<td>电话</td><td><input name="tele"> </td>
 			</tr>
 			<tr>
-				<td>EMAIL</td><td><input name="t.email"> </td>
+				<td>EMAIL</td><td><input name="email"> </td>
 			</tr>			
 		</table>	
 		<button id="btnSave" type="button">保存</button>

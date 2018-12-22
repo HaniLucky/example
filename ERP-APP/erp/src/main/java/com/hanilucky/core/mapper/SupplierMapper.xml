@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanilucky.core.mapper.SupplierMapper" >
+  <resultMap id="BaseResultMap" type="com.hanilucky.core.vo.Supplier" >
+    <id column="UUID" property="uuid" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="CONTACT" property="contact" jdbcType="VARCHAR" />
+    <result column="TELE" property="tele" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UUID, NAME, ADDRESS, CONTACT, TELE, EMAIL, TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from supplier
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hanilucky.core.vo.Supplier" >
+    insert into supplier (UUID, NAME, ADDRESS, 
+      CONTACT, TELE, EMAIL, 
+      TYPE)
+    values (#{uuid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{contact,jdbcType=VARCHAR}, #{tele,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{type,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hanilucky.core.vo.Supplier" >
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="contact != null" >
+        CONTACT,
+      </if>
+      <if test="tele != null" >
+        TELE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="tele != null" >
+        #{tele,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanilucky.core.vo.Supplier" >
+    update supplier
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        CONTACT = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="tele != null" >
+        TELE = #{tele,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=CHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hanilucky.core.vo.Supplier" >
+    update supplier
+    set NAME = #{name,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      CONTACT = #{contact,jdbcType=VARCHAR},
+      TELE = #{tele,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=CHAR}
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectList" resultMap="BaseResultMap" parameterType="com.hanilucky.core.vo.Supplier" >
+  	 select 
+    <include refid="Base_Column_List" />
+    from supplier
+    <where>
+    	<if test="uuid != null">
+    	  AND UUID = #{uuid,jdbcType=INTEGER}
+    	</if>
+    	<if test="name != null and name != ''">
+    	'NAME' = #{name,jdbcType=VARCHAR}
+    	</if>
+    	<if test="address != null and address != ''">
+    	 AND ADDRESS = #{address,jdbcType=VARCHAR}
+    	</if>
+    	<if test="contact != null and contact != ''">
+    	 AND CONTACT = #{contact,jdbcType=VARCHAR}
+    	</if>
+    	<if test="tele != null and tele != ''">
+    	 AND TELE = #{tele,jdbcType=VARCHAR}
+    	</if>
+    	<if test="email != null and email != ''">
+    	  AND EMAIL = #{email,jdbcType=VARCHAR}
+    	</if>
+    	<if test="type != null and type != ''">
+    	  AND TYPE = #{type,jdbcType=CHAR}
+    	</if>
+    </where>
+  </select>
+</mapper>

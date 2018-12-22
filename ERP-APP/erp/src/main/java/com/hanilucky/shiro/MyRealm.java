@@ -21,26 +21,24 @@ import com.hanilucky.core.service.EmpService;
 import com.hanilucky.core.service.MenuService;
 import com.hanilucky.core.vo.Emp;
 import com.hanilucky.core.vo.Menu;
+
 /**
  * 自定义realm
  * 实现认证,授权
  * @author Administrator
  *
  */
-@Component
-public class MyRealm extends AuthorizingRealm{
-	
+//@Component  (项目中没有扫描这个注解)
+public class MyRealm extends AuthorizingRealm {
 
-	
-	
 	@Autowired
 	private EmpService empService;
-	
+
 	@Autowired
 	private MenuService menuService;
 
 	private static final Logger log = LoggerFactory.getLogger(MyRealm.class);
-	
+
 	/**
 	 * 这些过滤器分为两组，一组是认证过滤器，一组是授权过滤器。
 	 * 第一组:认证过滤器:anon，authcBasic，auchc，user
@@ -49,7 +47,7 @@ public class MyRealm extends AuthorizingRealm{
 	 * 鉴权等操作走第二组,调用doGetAuthorizationInfo(不是一定调用这个方法)
 	 * 第一组授权过滤器实在第一组的认证过滤器的基础上调用的
 	 */
-	
+
 	/**
 	 * /dep/**=perms["testPerms"]
 	 * /dep/**=anon,perms["testPerms"]
@@ -78,18 +76,19 @@ public class MyRealm extends AuthorizingRealm{
 	 * 认证   登录
 	 */
 	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
+			throws AuthenticationException {
 		log.info("=====================调用了认证方法=====================");
 		// 获取令牌(要进行认证的主体信息)
 		UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 		// 获取用户名与密码
 		String username = token.getUsername();
-		String password = new String( token.getPassword());
+		String password = new String(token.getPassword());
 		
 		Emp emp = new Emp();
 		emp.setUsername(username);
 		emp.setPwd(new Md5Hash(password, username, 2).toString());
-		
+
 		// 登陆
 		Emp user = empService.login(emp);
 		if (user == null) { // 登录失败

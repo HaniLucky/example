@@ -18,6 +18,8 @@ import com.hanilucky.common.Result;
 import com.hanilucky.core.service.EmpService;
 import com.hanilucky.core.vo.Emp;
 
+import junit.framework.Test;
+
 @RestController
 @RequestMapping(value= "/sso")
 public class LoginController {
@@ -72,4 +74,14 @@ public class LoginController {
 		}
 	}
 	
+	
+	public static void main(String[] args) {
+		test();
+	}
+
+	private static void test() {
+		// RunTimeException 必须处理
+		// Exception不是必须处理
+		throw new RuntimeException();
+	}
 }

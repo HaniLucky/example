@@ -15,6 +15,8 @@ import com.hanilucky.core.service.RoleService;
 import com.hanilucky.core.vo.EmpRole;
 import com.hanilucky.core.vo.Tree;
 
+import redis.clients.jedis.Jedis;
+
 @RestController
 @RequestMapping(value = "/emp/role")
 public class EmpRoleController {
@@ -24,6 +26,9 @@ public class EmpRoleController {
 
 	@Autowired
 	private EmpRoleService empRoleService;
+	
+	@Autowired
+	private Jedis jedis;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public List<Tree> readEmpRoles(@PathVariable String id) {
@@ -55,6 +60,8 @@ public class EmpRoleController {
 			e.printStackTrace();
 			return new Result(true, "更新角色权限失败", null);
 		}
+		// 删除redis用户菜单缓存
+		// jedis.del("menuTree"+id);
 		// 更新数据
 		return new Result(true, "更新角色权限成功", null);
 	}

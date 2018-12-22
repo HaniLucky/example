@@ -25,9 +25,6 @@
 		<!-- 过滤器链定义：指定页面的访问规则 -->
 		<property name="filterChainDefinitions">
 			<value>
-				<!-- 测试perms 系统中没有这个权限 -->
-				<!-- /dep/** = perms["testPerms"] -->
-				<!-- /dep/**=perms["testPerms"] -->
 				<!-- 前端资源权限end -->
 				/error.html = anon
 				/adminjs/** = anon
@@ -39,12 +36,10 @@
 				<!-- 登录接口放开 -->
 				/sso/login/* = anon
 				<!-- 第二组过滤器需要经过第一组的过滤器之后才会起作用 -->
-				/dep/**=perms["testPerms"]
+				<!-- 测试perms 系统中没有这个权限 -->
+				<!-- /dep/**=perms["testPerms"] -->
 				<!-- 余下所有页面都需要登录访问 -->
-				<!-- 明明配置了拦截.html但是首頁还是能直接访问  需要再单独配置遍，不知道为什么 -->
-				<!-- /index.html = authc -->
 				/*.html = authc
-				/* = authc
 				<!-- 余下的所有接口都要认证只有才能访问 -->
 				/** = authc
 			</value>
@@ -55,6 +50,7 @@
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="myRealm"></property>
 	</bean>
+	<!-- 是否可以通过注解注入// 待测试 -->
 	<bean id="myRealm" class="com.hanilucky.shiro.MyRealm"/>
 	
 </beans>

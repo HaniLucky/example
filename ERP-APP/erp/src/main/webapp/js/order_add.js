@@ -7,9 +7,10 @@ $(function(){
 		  		    	disabled:true		  		    	
 		  		    }}},
 		  		    {field:'goodsname',title:'商品名称',width:100,editor:{type:'combobox',options:{
-		  		    	url:'goods_list.action',
+		  		    	url:'goods/',
 		  		    	valueField:'name',
 		  		    	textField:'name',
+		  		    	method:'get',
 		  		    	onSelect:function(record){
 		  		    		//获取价格编辑框
 		  		    		var priceEdt= $('#ordersgrid').datagrid('getEditor',{index: isEditingRowIndex ,field:'price'});
@@ -84,7 +85,8 @@ $(function(){
 	//供应商下拉列表
 	
 	$('#supplieruuid').combogrid({
-		url:'supplier_list.action?t1.type='+Request['type'],
+		url:Request['type']+'/supplier/',
+		method:'get',
 		columns: [[
 		  		    {field:'uuid',title:'编号',width:100},
 		  		    {field:'name',title:'名称',width:100},

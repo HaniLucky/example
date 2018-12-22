@@ -38,7 +38,7 @@ $(function(){
 	
 	//如果是我的采购订单 
 	if(Request['operation']=='myorders' && Request['type']==1){
-		url='orders_myListByPage.action?t1.state=0&t1.type=1';//状态为0 
+		url='orders/page/list/0/1';//状态为0 
 		document.title="我的采购订单";	
 		$('#btnAdd').show();//显示增加订单按钮
 		$('#btnAdd').linkbutton({'text':'采购申请'});//更改按钮文字

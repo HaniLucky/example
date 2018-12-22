@@ -1,4 +1,3 @@
-
 var method="";//保存提交的方法名称 
 $(function(){
 	

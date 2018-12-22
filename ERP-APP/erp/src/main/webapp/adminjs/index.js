@@ -13,7 +13,7 @@ $(function(){
 	showName();//显示姓名
 	
 	$.ajax({
-		url:'index/meunTree/shiro',
+		url:'index/menuTree/shiro',
 		dataType:'json',
 		success:function(value){
 			_menus=value;
@@ -51,7 +51,8 @@ function showName(){
 			if(value.success){
 				$('#username').html(value.message);
 			}else{//如果当前用户未登陆
-				location.href="login.html";//跳转到登陆页面
+				// 访问index时由shiro根据规则来路由   不注释掉的在闪一下再跳转到login.html  注释掉由shiro来跳转解决
+				/* location.href="login.html";//跳转到登陆页面 */
 			}
 			
 		}
