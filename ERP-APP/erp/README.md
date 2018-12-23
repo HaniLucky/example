@@ -8,7 +8,7 @@ shiro配置的大致流程
 
 ​	重要概念
 
-​		RBAC
+​		RBAC 基于角色的权限访问控制（Role-Based Access Control） 
 
 ​	shiro比较重要的对象
 
