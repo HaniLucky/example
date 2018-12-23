@@ -45,7 +45,7 @@
 		</javaClientGenerator>
 		
 		<!-- 指定数据库表 -->
-		 <table schema="" tableName="orders" enableCountByExample="false"
+		 <table schema="" tableName="orderdetail" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table> 

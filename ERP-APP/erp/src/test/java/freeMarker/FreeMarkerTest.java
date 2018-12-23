@@ -27,7 +27,7 @@ public class FreeMarkerTest {
 //         String tempNm = sc.nextLine(); 
          
          List<String> tempNms = new ArrayList<String>();
-         tempNms.add("orders");
+         tempNms.add("orderdetail");
 //         tempNms.add("role");
          for (String tempNm : tempNms) {
         	 createFtl(tempNm);

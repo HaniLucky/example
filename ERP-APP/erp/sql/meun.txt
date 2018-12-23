@@ -38,6 +38,7 @@ MENUID	MENUNAME			ICON		URL													PID
 704		用户角色设置		icon-sys	empRoleSet.html										700
 800		采购退货管理		icon-sys	-													0
 801		退货订单申请		icon-sys	orders.html?operation=returnOrder&type=1			800
+
 802		退货订单审核		icon-sys	returnorders_1.html?operation=check&type=1			800
 803		退货订单出库		icon-sys	returnorders_1.html?operation=outStore&type=1		800
 804		退货订单查询		icon-sys	returnorders_1.html?operation=returnorders&type=1	800

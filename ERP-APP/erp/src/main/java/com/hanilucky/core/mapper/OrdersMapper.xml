@@ -47,7 +47,9 @@
 		#{ender,jdbcType=DECIMAL}, #{supplieruuid,jdbcType=DECIMAL}, #{totalmoney,jdbcType=DECIMAL},
 		#{state,jdbcType=CHAR}, #{waybillsn,jdbcType=DECIMAL})
 	</insert>
-	<insert id="insertSelective" parameterType="com.hanilucky.core.vo.Orders">
+	
+	<!-- 新增记录是添加主键 -->
+	<insert id="insertSelective" parameterType="com.hanilucky.core.vo.Orders" useGeneratedKeys="true" keyColumn="UUID" keyProperty="uuid">
 		insert into orders
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="uuid != null">

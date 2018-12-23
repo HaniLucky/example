@@ -2,6 +2,7 @@ package com.hanilucky.core.vo;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class Orders {
     private Integer uuid;
@@ -31,6 +32,8 @@ public class Orders {
     private String state;
 
     private Integer waybillsn;
+    
+    // private List<Orderdetail> orderdetails;
 
     public Integer getUuid() {
         return uuid;
@@ -143,4 +146,13 @@ public class Orders {
     public void setWaybillsn(Integer waybillsn) {
         this.waybillsn = waybillsn;
     }
+
+//	public List<Orderdetail> getOrderdetails() {
+//		return orderdetails;
+//	}
+//
+//	public void setOrderdetails(List<Orderdetail> orderdetails) {
+//		this.orderdetails = orderdetails;
+//	}
+    
 }

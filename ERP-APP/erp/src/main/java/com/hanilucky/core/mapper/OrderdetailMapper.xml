@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanilucky.core.mapper.OrderdetailMapper">
+	<resultMap id="BaseResultMap" type="com.hanilucky.core.vo.Orderdetail">
+		<id column="UUID" property="uuid" jdbcType="INTEGER" />
+		<result column="GOODSUUID" property="goodsuuid" jdbcType="DECIMAL" />
+		<result column="GOODSNAME" property="goodsname" jdbcType="VARCHAR" />
+		<result column="PRICE" property="price" jdbcType="DECIMAL" />
+		<result column="NUM" property="num" jdbcType="DECIMAL" />
+		<result column="MONEY" property="money" jdbcType="DECIMAL" />
+		<result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+		<result column="ENDER" property="ender" jdbcType="DECIMAL" />
+		<result column="STOREUUID" property="storeuuid" jdbcType="DECIMAL" />
+		<result column="STATE" property="state" jdbcType="CHAR" />
+		<result column="ORDERSUUID" property="ordersuuid" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		UUID, GOODSUUID, GOODSNAME, PRICE, NUM, MONEY, ENDTIME,
+		ENDER, STOREUUID,
+		STATE,
+		ORDERSUUID
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from orderdetail
+		where UUID = #{uuid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		orderdetail
+		where UUID = #{uuid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.hanilucky.core.vo.Orderdetail">
+		insert into orderdetail (UUID,
+		GOODSUUID, GOODSNAME,
+		PRICE, NUM, MONEY,
+		ENDTIME, ENDER, STOREUUID,
+		STATE, ORDERSUUID)
+		values (#{uuid,jdbcType=INTEGER},
+		#{goodsuuid,jdbcType=DECIMAL},
+		#{goodsname,jdbcType=VARCHAR},
+		#{price,jdbcType=DECIMAL}, #{num,jdbcType=DECIMAL},
+		#{money,jdbcType=DECIMAL},
+		#{endtime,jdbcType=TIMESTAMP},
+		#{ender,jdbcType=DECIMAL},
+		#{storeuuid,jdbcType=DECIMAL},
+		#{state,jdbcType=CHAR}, #{ordersuuid,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hanilucky.core.vo.Orderdetail">
+		insert into orderdetail
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="uuid != null">
+				UUID,
+			</if>
+			<if test="goodsuuid != null">
+				GOODSUUID,
+			</if>
+			<if test="goodsname != null">
+				GOODSNAME,
+			</if>
+			<if test="price != null">
+				PRICE,
+			</if>
+			<if test="num != null">
+				NUM,
+			</if>
+			<if test="money != null">
+				MONEY,
+			</if>
+			<if test="endtime != null">
+				ENDTIME,
+			</if>
+			<if test="ender != null">
+				ENDER,
+			</if>
+			<if test="storeuuid != null">
+				STOREUUID,
+			</if>
+			<if test="state != null">
+				STATE,
+			</if>
+			<if test="ordersuuid != null">
+				ORDERSUUID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="uuid != null">
+				#{uuid,jdbcType=INTEGER},
+			</if>
+			<if test="goodsuuid != null">
+				#{goodsuuid,jdbcType=DECIMAL},
+			</if>
+			<if test="goodsname != null">
+				#{goodsname,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="num != null">
+				#{num,jdbcType=DECIMAL},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="endtime != null">
+				#{endtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="ender != null">
+				#{ender,jdbcType=DECIMAL},
+			</if>
+			<if test="storeuuid != null">
+				#{storeuuid,jdbcType=DECIMAL},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=CHAR},
+			</if>
+			<if test="ordersuuid != null">
+				#{ordersuuid,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hanilucky.core.vo.Orderdetail">
+		update orderdetail
+		<set>
+			<if test="goodsuuid != null">
+				GOODSUUID = #{goodsuuid,jdbcType=DECIMAL},
+			</if>
+			<if test="goodsname != null">
+				GOODSNAME = #{goodsname,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				PRICE = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="num != null">
+				NUM = #{num,jdbcType=DECIMAL},
+			</if>
+			<if test="money != null">
+				MONEY = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="endtime != null">
+				ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="ender != null">
+				ENDER = #{ender,jdbcType=DECIMAL},
+			</if>
+			<if test="storeuuid != null">
+				STOREUUID = #{storeuuid,jdbcType=DECIMAL},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=CHAR},
+			</if>
+			<if test="ordersuuid != null">
+				ORDERSUUID = #{ordersuuid,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where UUID = #{uuid,jdbcType=INTEGER}
+	</update>
+
+
+	<update id="updateByPrimaryKey" parameterType="com.hanilucky.core.vo.Orderdetail">
+		update orderdetail
+		set GOODSUUID = #{goodsuuid,jdbcType=DECIMAL},
+		GOODSNAME =
+		#{goodsname,jdbcType=VARCHAR},
+		PRICE = #{price,jdbcType=DECIMAL},
+		NUM =
+		#{num,jdbcType=DECIMAL},
+		MONEY = #{money,jdbcType=DECIMAL},
+		ENDTIME =
+		#{endtime,jdbcType=TIMESTAMP},
+		ENDER = #{ender,jdbcType=DECIMAL},
+		STOREUUID = #{storeuuid,jdbcType=DECIMAL},
+		STATE =
+		#{state,jdbcType=CHAR},
+		ORDERSUUID = #{ordersuuid,jdbcType=DECIMAL}
+		where UUID = #{uuid,jdbcType=INTEGER}
+	</update>
+
+	<insert id="saveBatch" parameterType="list">
+		insert into orderdetail
+		(goodsname,goodsuuid,money,num,ordersuuid,price,state) VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.goodsname},#{item.goodsuuid},#{item.money},#{item.num},#{item.ordersuuid},#{item.price},#{item.state})
+		</foreach>
+	</insert>
+</mapper>

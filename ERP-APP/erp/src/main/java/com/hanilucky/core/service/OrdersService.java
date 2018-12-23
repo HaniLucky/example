@@ -3,6 +3,7 @@ package com.hanilucky.core.service;
 import java.util.List;
 
 import com.hanilucky.common.PageBean;
+import com.hanilucky.core.vo.Orderdetail;
 import com.hanilucky.core.vo.Orders;
 
 public interface OrdersService {
@@ -20,5 +21,7 @@ public interface OrdersService {
 	PageBean<Orders> page(int pageNum, int pageSize);
 
 	PageBean<Orders> pageList(Orders orders,int pageNum, int pageSize);
+
+	Integer saveOrder(List<Orderdetail> orderdetail,String type);
 
 }
