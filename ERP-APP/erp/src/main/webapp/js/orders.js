@@ -27,7 +27,7 @@ $(function(){
 	}
 	
 	if(Request['operation']=='check'&&Request['type']==1){  //采购订单审核
-		url+="/page/list/0/0"
+		url+="/page/list/1/0"
 		$("#checkBtn").show();  //显示  
 	}
 	
@@ -40,6 +40,7 @@ $(function(){
 		url+="/page/list/2/1"
 		$("#instoreBtn").show();  //显示  
 	}
+	
 	
 	if(Request['operation']=='outstore'&&Request['type']==2){  //销售订单出库
 		url+="/page/list/0/2"

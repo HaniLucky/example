@@ -33,7 +33,7 @@ public class Orders {
 
     private Integer waybillsn;
     
-    // private List<Orderdetail> orderdetails;
+    private List<Orderdetail> orderdetails;
 
     public Integer getUuid() {
         return uuid;
@@ -147,12 +147,12 @@ public class Orders {
         this.waybillsn = waybillsn;
     }
 
-//	public List<Orderdetail> getOrderdetails() {
-//		return orderdetails;
-//	}
-//
-//	public void setOrderdetails(List<Orderdetail> orderdetails) {
-//		this.orderdetails = orderdetails;
-//	}
+	public List<Orderdetail> getOrderdetails() {
+		return orderdetails;
+	}
+
+	public void setOrderdetails(List<Orderdetail> orderdetails) {
+		this.orderdetails = orderdetails;
+	}
     
 }

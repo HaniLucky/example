@@ -17,7 +17,7 @@ import com.hanilucky.core.vo.Orders;
 
 /**
  * type 1 采购订单
- * 		2 销售订单
+ * 		2   销售订单
  * state 0 未审核
  * 		 1 已审核
  * 		 2 已确认

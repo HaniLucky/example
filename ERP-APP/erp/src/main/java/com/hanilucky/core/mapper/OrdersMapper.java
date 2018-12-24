@@ -18,4 +18,11 @@ public interface OrdersMapper {
     int updateByPrimaryKey(Orders record);
 
 	List<Orders> selectList(Orders orders);
+	
+	/**
+	 * 一对多关联查询
+	 * @param orders
+	 * @return
+	 */
+	List<Orders> selectOrderList(Orders orders);
 }

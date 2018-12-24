@@ -185,4 +185,46 @@
 			(#{item.goodsname},#{item.goodsuuid},#{item.money},#{item.num},#{item.ordersuuid},#{item.price},#{item.state})
 		</foreach>
 	</insert>
+
+	<select id="selectList" parameterType="com.hanilucky.core.vo.Orderdetail"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from orderdetail
+		<where>
+			<if test="uuid != null">
+				AND UUID = #{uuid,jdbcType=INTEGER}
+			</if>
+			<if test="goodsuuid != null">
+				AND GOODSUUID = #{goodsuuid,jdbcType=DECIMAL}
+			</if>
+			<if test="goodsname != null and goodsname != ''">
+				AND GOODSNAME = #{goodsname,jdbcType=VARCHAR}
+			</if>
+			<if test="price != null">
+				AND PRICE = #{price,jdbcType=DECIMAL}
+			</if>
+			<if test="num != null">
+				AND NUM = #{num,jdbcType=DECIMAL}
+			</if>
+			<if test="money != null">
+				AND MONEY = #{money,jdbcType=DECIMAL}
+			</if>
+			<if test="endtime != null">
+				AND ENDTIME = #{endtime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="ender != null">
+				AND ENDER = #{ender,jdbcType=DECIMAL}
+			</if>
+			<if test="storeuuid != null">
+				AND STOREUUID = #{storeuuid,jdbcType=DECIMAL}
+			</if>
+			<if test="state != null and state != ''">
+				AND STATE = #{state,jdbcType=CHAR}
+			</if>
+			<if test="ordersuuid != null">
+				AND ORDERSUUID = #{ordersuuid,jdbcType=DECIMAL}
+			</if>
+		</where>
+	</select>
 </mapper>

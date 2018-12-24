@@ -18,9 +18,11 @@
 		<result column="WAYBILLSN" property="waybillsn" jdbcType="DECIMAL" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		UUID, CREATETIME, CHECKTIME, STARTTIME, ENDTIME, TYPE, CREATER, CHECKER,
+		UUID, CREATETIME, CHECKTIME, STARTTIME, ENDTIME, TYPE,
+		CREATER, CHECKER,
 		STARTER,
-		ENDER, SUPPLIERUUID, TOTALMONEY, STATE, WAYBILLSN
+		ENDER, SUPPLIERUUID, TOTALMONEY, STATE,
+		WAYBILLSN
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -34,22 +36,28 @@
 		where UUID = #{uuid,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.hanilucky.core.vo.Orders">
-		insert into orders (UUID, CREATETIME, CHECKTIME,
+		insert into orders (UUID,
+		CREATETIME, CHECKTIME,
 		STARTTIME, ENDTIME, TYPE,
-		CREATER, CHECKER, STARTER,
+		CREATER, CHECKER,
+		STARTER,
 		ENDER, SUPPLIERUUID, TOTALMONEY,
 		STATE, WAYBILLSN)
-		values (#{uuid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+		values
+		(#{uuid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
 		#{checktime,jdbcType=TIMESTAMP},
-		#{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{type,jdbcType=CHAR},
+		#{starttime,jdbcType=TIMESTAMP},
+		#{endtime,jdbcType=TIMESTAMP}, #{type,jdbcType=CHAR},
 		#{creater,jdbcType=DECIMAL}, #{checker,jdbcType=DECIMAL},
 		#{starter,jdbcType=DECIMAL},
-		#{ender,jdbcType=DECIMAL}, #{supplieruuid,jdbcType=DECIMAL}, #{totalmoney,jdbcType=DECIMAL},
+		#{ender,jdbcType=DECIMAL},
+		#{supplieruuid,jdbcType=DECIMAL}, #{totalmoney,jdbcType=DECIMAL},
 		#{state,jdbcType=CHAR}, #{waybillsn,jdbcType=DECIMAL})
 	</insert>
-	
+
 	<!-- 新增记录是添加主键 -->
-	<insert id="insertSelective" parameterType="com.hanilucky.core.vo.Orders" useGeneratedKeys="true" keyColumn="UUID" keyProperty="uuid">
+	<insert id="insertSelective" parameterType="com.hanilucky.core.vo.Orders"
+		useGeneratedKeys="true" keyColumn="UUID" keyProperty="uuid">
 		insert into orders
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="uuid != null">
@@ -187,22 +195,31 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.hanilucky.core.vo.Orders">
 		update orders
-		set CREATETIME = #{createtime,jdbcType=TIMESTAMP},
-		CHECKTIME = #{checktime,jdbcType=TIMESTAMP},
-		STARTTIME = #{starttime,jdbcType=TIMESTAMP},
-		ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+		set
+		CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+		CHECKTIME =
+		#{checktime,jdbcType=TIMESTAMP},
+		STARTTIME =
+		#{starttime,jdbcType=TIMESTAMP},
+		ENDTIME =
+		#{endtime,jdbcType=TIMESTAMP},
 		TYPE = #{type,jdbcType=CHAR},
-		CREATER = #{creater,jdbcType=DECIMAL},
+		CREATER =
+		#{creater,jdbcType=DECIMAL},
 		CHECKER = #{checker,jdbcType=DECIMAL},
 		STARTER = #{starter,jdbcType=DECIMAL},
-		ENDER = #{ender,jdbcType=DECIMAL},
-		SUPPLIERUUID = #{supplieruuid,jdbcType=DECIMAL},
-		TOTALMONEY = #{totalmoney,jdbcType=DECIMAL},
+		ENDER =
+		#{ender,jdbcType=DECIMAL},
+		SUPPLIERUUID =
+		#{supplieruuid,jdbcType=DECIMAL},
+		TOTALMONEY =
+		#{totalmoney,jdbcType=DECIMAL},
 		STATE = #{state,jdbcType=CHAR},
 		WAYBILLSN = #{waybillsn,jdbcType=DECIMAL}
-		where UUID = #{uuid,jdbcType=INTEGER}
+		where UUID =
+		#{uuid,jdbcType=INTEGER}
 	</update>
-	
+
 	<select id="selectList" resultMap="BaseResultMap" parameterType="com.hanilucky.core.vo.Orders">
 		select
 		<include refid="Base_Column_List" />
@@ -253,4 +270,121 @@
 		</where>
 	</select>
 
+	<resultMap id="OrderResultMap" type="com.hanilucky.core.vo.Orders">
+		<id column="UUID" property="uuid" jdbcType="INTEGER" />
+		<result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="CHECKTIME" property="checktime" jdbcType="TIMESTAMP" />
+		<result column="STARTTIME" property="starttime" jdbcType="TIMESTAMP" />
+		<result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+		<result column="TYPE" property="type" jdbcType="CHAR" />
+		<result column="CREATER" property="creater" jdbcType="DECIMAL" />
+		<result column="CHECKER" property="checker" jdbcType="DECIMAL" />
+		<result column="STARTER" property="starter" jdbcType="DECIMAL" />
+		<result column="ENDER" property="ender" jdbcType="DECIMAL" />
+		<result column="SUPPLIERUUID" property="supplieruuid" jdbcType="DECIMAL" />
+		<result column="TOTALMONEY" property="totalmoney" jdbcType="DECIMAL" />
+		<result column="STATE" property="state" jdbcType="CHAR" />
+		<result column="WAYBILLSN" property="waybillsn" jdbcType="DECIMAL" />
+		<!-- 多表 -->
+		<collection property="orderdetails" columnPrefix="detail_"
+			ofType="com.hanilucky.core.vo.Orderdetail">
+			<id column="DETAIL_UUID" property="UUID" jdbcType="INTEGER" />
+			<result column="DETAIL_GOODSUUID" property="GOODSUUID"
+				jdbcType="DECIMAL" />
+			<result column="DETAIL_GOODSNAME" property="GOODSNAME"
+				jdbcType="VARCHAR" />
+			<result column="DETAIL_PRICE" property="PRICE" jdbcType="DECIMAL" />
+			<result column="DETAIL_NUM" property="NUM" jdbcType="DECIMAL" />
+			<result column="DETAIL_MONEY" property="MONEY" jdbcType="DECIMAL" />
+			<result column="DETAIL_ENDTIME" property="ENDTIME" jdbcType="TIMESTAMP" />
+			<result column="DETAIL_ENDER" property="ENDER" jdbcType="DECIMAL" />
+			<result column="DETAIL_STOREUUID" property="STOREUUID"
+				jdbcType="DECIMAL" />
+			<result column="DETAIL_STATE" property="STATE" jdbcType="CHAR" />
+			<result column="DETAIL_ORDERSUUID" property="ORDERSUUID"
+				jdbcType="DECIMAL" />
+		</collection>
+	</resultMap>
+
+	<!-- 订单_订单明细关联查询 -->
+	<select id="selectOrderList" parameterType="com.hanilucky.core.vo.Orders"
+		resultMap="OrderResultMap">
+		SELECT
+		T1.UUID,
+		T1.CREATETIME,
+		T1.CHECKTIME,
+		T1.STARTTIME,
+		T1.ENDTIME,
+		T1.TYPE,
+		T1.CREATER,
+		T1.CHECKER,
+		T1.STARTER,
+		T1.ENDER,
+		T1.SUPPLIERUUID,
+		T1.TOTALMONEY,
+		T1.STATE,
+		T1.WAYBILLSN,
+		T2.UUID AS DETAIL_UUID,
+		T2.GOODSUUID AS DETAIL_GOODSUUID,
+		T2.GOODSNAME AS DETAIL_GOODSNAME,
+		T2.PRICE AS DETAIL_PRICE,
+		T2.NUM AS
+		DETAIL_NUM,
+		T2.MONEY AS DETAIL_MONEY,
+		T2.ENDTIME AS DETAIL_ENDTIME,
+		T2.ENDER AS DETAIL_ENDER,
+		T2.STOREUUID AS
+		DETAIL_STOREUUID,
+		T2.STATE AS
+		DETAIL_STATE,
+		T2.ORDERSUUID AS
+		DETAIL_ORDERSUUID
+		FROM
+		ORDERS T1 INNER JOIN
+		ORDERDETAIL T2 ON T1.UUID = T2.GOODSUUID 
+		<where>
+			<if test="supplieruuid != null">
+				AND T1.UUID = #{uuid,jdbcType=INTEGER}
+			</if>
+			<if test="createtime != null">
+				AND T1.CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="checktime != null">
+				AND T1.CHECKTIME = #{checktime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="starttime != null">
+				AND T1.STARTTIME = #{starttime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="endtime != null">
+				AND T1.ENDTIME = #{endtime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="type != null and type != ''">
+				AND T1.TYPE = #{type,jdbcType=CHAR}
+			</if>
+			<if test="creater != null">
+				AND T1.CREATER = #{creater,jdbcType=DECIMAL}
+			</if>
+			<if test="checker != null">
+				AND T1.CHECKER = #{checker,jdbcType=DECIMAL}
+			</if>
+			<if test="starter != null">
+				AND T1.STARTER = #{starter,jdbcType=DECIMAL}
+			</if>
+			<if test="ender != null">
+				AND T1.ENDER = #{ender,jdbcType=DECIMAL}
+			</if>
+			<if test="supplieruuid != null">
+				AND T1.SUPPLIERUUID = #{supplieruuid,jdbcType=DECIMAL}
+			</if>
+			<if test="totalmoney != null">
+				AND T1.TOTALMONEY = #{totalmoney,jdbcType=DECIMAL}
+			</if>
+			<if test="state != null and state != ''">
+				AND T1.STATE = #{state,jdbcType=CHAR}
+			</if>
+			<if test="waybillsn != null">
+				AND T1.WAYBILLSN = #{waybillsn,jdbcType=DECIMAL}
+			</if>
+		</where>
+	</select>
 </mapper>
