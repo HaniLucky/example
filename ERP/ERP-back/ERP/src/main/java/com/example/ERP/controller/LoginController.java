@@ -86,4 +86,18 @@ public class LoginController {
         }
         return  new Result(false,"更新密码失败",null);
     }
+
+    @RequestMapping(value = "/success", method = RequestMethod.GET)
+    public Result success() {
+        return new Result(true, "登录成功", null);
+    }
+
+    /**
+     * 退出
+     */
+    @RequestMapping(value = "/fail", method = RequestMethod.GET)
+    public Result logout() {
+        return new Result(true, "沒有权限访问", null);
+    }
+
 }
