@@ -24,4 +24,6 @@ public interface OrdersService {
 
 	Integer saveOrder(List<Orderdetail> orderdetail,String type);
 
+	Integer update(String state, Integer orderId);
+
 }

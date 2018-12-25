@@ -21,9 +21,10 @@
 		<script>
 			$(document).ready(function(){
 			  $("button").click(function(){
-                  // 直接请求后端接口访问不通 会爆跨域问题
+                  // 直接请求后端接口访问不通 会报跨域问题
 				// $.get("http://127.0.0.1:8080/app",function(data,status){
                   // 利用同源策略访问  访问的实际地址是  http:127.0.0.1:8081/api/app
+                  // nginx代理会跳转到http:127.0.0.1:8080
 				$.get("/api/app",function(data,status){
 				  alert("数据：" + data + "\n状态：" + status);
 				});

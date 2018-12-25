@@ -65,4 +65,12 @@ public class OrderdetailServiceImpl implements OrderdetailService {
 		return orderdetailMapper.saveBatch(orderdetails);
 	}
 
+	/**
+	 * 查询条件查询全部
+	 */
+	@Override
+	public List<Orderdetail> list(Orderdetail orderdetail) {
+		return orderdetailMapper.selectList(orderdetail);
+	}
+
 }

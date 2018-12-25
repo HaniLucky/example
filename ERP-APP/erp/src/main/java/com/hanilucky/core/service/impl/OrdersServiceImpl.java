@@ -73,11 +73,11 @@ public class OrdersServiceImpl implements OrdersService {
 	public PageBean<Orders> page(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<Orders> list = ordersMapper.selectList(null);
-		
+
 		// 根据订单表分页 如果是根据关联查询分页数据count的数不正确
 		// List<Orders> list = ordersMapper.selectOrderList(null);
 
-		// 在for 循环之外声明一个对象 没次都是同一个地址值重新赋值  而不是每次都创建一个对象
+		// 在for 循环之外声明一个对象 没次都是同一个地址值重新赋值 而不是每次都创建一个对象
 		Orderdetail orderdetail = null;
 		List<Orderdetail> orderdetails = null;
 		for (Orders orders : list) {
@@ -95,9 +95,9 @@ public class OrdersServiceImpl implements OrdersService {
 	public PageBean<Orders> pageList(Orders orders, int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<Orders> list = ordersMapper.selectList(orders);
-		
+
 		// List<Orders> list = ordersMapper.selectOrderList(orders);
-		//  在for 循环之外声明一个对象 没次都是同一个地址值重新赋值  而不是每次都创建一个对象
+		// 在for 循环之外声明一个对象 没次都是同一个地址值重新赋值 而不是每次都创建一个对象
 		Orderdetail orderdetail = null;
 		List<Orderdetail> orderdetails = null;
 		for (Orders order : list) {
@@ -125,9 +125,10 @@ public class OrdersServiceImpl implements OrdersService {
 		// 从shiro对象中当前操作人的对象id
 		orders.setCreater(UserUtils.getUserId());
 		orders.setCreatetime(new Date());
-		orders.setState(StateEnum.UNCHECKED.value()); // 订单状态 0 未审核 1 已审核 2已确认 3 已入库
+		orders.setState(StateEnum.UNCHECKED.value()); // 订单状态 0 未审核 1 已审核 2已确认 3
+														// 已入库
 		orders.setType(type); // 1采购订单 2 销售订单
-		
+
 		// 计算合计总价
 		BigDecimal totalMoney = new BigDecimal(0);
 		for (Orderdetail orderdetail : orderdetails) {
@@ -136,13 +137,13 @@ public class OrdersServiceImpl implements OrdersService {
 		orders.setTotalmoney(totalMoney);
 		// 添加订单 改写新增方法将生成的主键返回
 		this.save(orders);
-		
+
 		// 添加订单详情数据
 		for (Orderdetail orderdetail : orderdetails) {
 			orderdetail.setState(StateEnum.UNCHECKED.value());
 			orderdetail.setOrdersuuid(orders.getUuid());
 		}
-		
+
 		/**
 		 * 批量添加
 		 */
@@ -151,4 +152,67 @@ public class OrdersServiceImpl implements OrdersService {
 		return num;
 	}
 
+	/**
+	 * @param state 状态  1 审核 2 确认 3 入库
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public Integer update(String state , Integer id) {
+		// 获取订单
+		Orders order = this.queryById(id);
+		// 设置为状态
+		order.setState(state);
+		// 设置操作人
+		setOrderOperator(state, order);
+		// 更新订单
+		this.update(order);
+		// 更新订单详情
+		Orderdetail orderdetail = new Orderdetail();
+		orderdetail.setOrdersuuid(id);
+		List<Orderdetail> Orderdetails = orderdetailService.list(orderdetail);
+		Integer num = 0;
+		for (Orderdetail orderdetailTemp : Orderdetails) {
+			orderdetailTemp.setState(state);
+			setOrderdetailOperator(state, orderdetailTemp);
+			 num += orderdetailService.update(orderdetailTemp);
+		}
+		return num;
+	}
+
+	
+	/**
+	 * 设置订单详细操作人
+	 * @param state
+	 * @param order
+	 */
+	private void setOrderdetailOperator(String state,Orderdetail orderdetail){
+		Integer userId = UserUtils.getUserId();
+		 if (StateEnum.OVER.value().equals(state)) {
+			 orderdetail.setEnder(userId);
+			 orderdetail.setEndtime(new Date());
+		}
+	}
+	
+	
+	/**
+	 * 设置订单操作人
+	 * @param state
+	 * @param order
+	 */
+	private void setOrderOperator(String state,Orders order){
+		Integer userId = UserUtils.getUserId();
+		if(StateEnum.CHECKED.value().equals(state)){
+			order.setChecker(userId);
+			order.setChecktime(new Date());
+		}else if (StateEnum.CONFIRMED.value().equals(state)){
+			order.setStarter(userId);
+			order.setStarttime(new Date());
+		}else if (StateEnum.OVER.value().equals(state)) {
+			order.setEnder(userId);
+			order.setEndtime(new Date());
+		}
+	}
+	
+	
 }

@@ -170,38 +170,38 @@
 		</dependency>
 
 		<!-- shiro安全框架 -->
-	<!-- apache shiro dependencies -->
-       <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>1.2.3</version>
-        </dependency>
+		<!-- apache shiro dependencies -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.2.3</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-web</artifactId>
-            <version>1.2.3</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>1.2.3</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>1.2.3</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.2.3</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-aspectj</artifactId>
-            <version>1.2.3</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-aspectj</artifactId>
+			<version>1.2.3</version>
+		</dependency>
 
 
-<!-- poi -->
+		<!-- poi -->
 
 		<!-- lombok -->
 		<!-- <dependency> <groupId>org.projectlombok</groupId> <artifactId>lombok</artifactId> 
 			<optional>true</optional> </dependency> -->
-		
+
 		<!-- redis连接 -->
 		<dependency>
 			<groupId>redis.clients</groupId>

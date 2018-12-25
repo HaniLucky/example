@@ -216,8 +216,9 @@ $(function(){
 		$.messager.confirm('提示','确认要审核通过吗？',function(r){
 			if(r){
 				$.ajax({
-					url:'orders_doCheck.action?id='+$("#uuid").html(),
+					url:'orders/'+$("#uuid").html()+"/1",
 					dataType:'json',
+					method:'put',
 					success:function(value){
 						if(value.success){
 							$("#orderdetailsWindow").window('close');	
@@ -235,7 +236,7 @@ $(function(){
 		$.messager.confirm('提示','确定要确认吗？',function(r){
 			if(r){
 				$.ajax({
-					url:'orders_doStart.action?id='+$("#uuid").html(),
+					url:'orders/'+$("#uuid").html()+"/2",
 					dataType:'json',
 					success:function(value){
 						if(value.success){

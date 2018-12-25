@@ -82,12 +82,11 @@ public class OrdersController {
 	}
 	
 	
-	// 新增
+	// 新增 订单及保单信息
 	@RequestMapping(value = "/{type}", method = RequestMethod.POST)
 	public Result save(@RequestBody List<Orderdetail> orderdetail,@PathVariable String type) {
-		
 		Integer num = ordersService.saveOrder(orderdetail,type);
-		return new Result(true, "新增成功", null);
+		return new Result(true, "新增成功", num);
 	}
 
 	// 新增
@@ -116,4 +115,14 @@ public class OrdersController {
 	public Orders queryById(@PathVariable Integer id) {
 		return ordersService.queryById(id);
 	}
+	
+	
+	// http://127.0.0.1:8080/id/1 method:put 审核
+	// http://127.0.0.1:8080/id/2 method:put 确认
+	// http://127.0.0.1:8080/id/3 method:put 入库
+	@RequestMapping(value = "/{id}/{state}", method = RequestMethod.PUT)
+	public Result update(@PathVariable Integer id,@PathVariable String state ) {
+		return new Result(true, "修改成功", ordersService.update(state,id));
+	}
+	
 }

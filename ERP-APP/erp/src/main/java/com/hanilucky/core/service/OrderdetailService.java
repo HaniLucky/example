@@ -23,4 +23,6 @@ public interface OrderdetailService {
 
 	Integer saveBatch(List<Orderdetail> orderdetails);
 
+	List<Orderdetail> list(Orderdetail orderdetail);
+
 }
