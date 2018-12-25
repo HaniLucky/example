@@ -98,7 +98,7 @@ public class MyRealm extends AuthorizingRealm {
 		// 参数1 principal 主角对象
 		// 参数2 credentials 密码
 		// 参数3 realmName realm名字
-		log.info("============登录成功,用户名或密码错误==========");
+		log.info("============登录成功==========");
 		return new SimpleAuthenticationInfo(user, password, user.getName());
 		// 如果校验失败返回null 如果校验成功返回SimpleAuthenticationInfo实例
 	}

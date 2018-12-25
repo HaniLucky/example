@@ -27,7 +27,7 @@ $(function(){
 	}
 	
 	if(Request['operation']=='check'&&Request['type']==1){  //采购订单审核
-		url+="/page/list/1/0"
+		url+="/page/list/0/1"
 		$("#checkBtn").show();  //显示  
 	}
 	

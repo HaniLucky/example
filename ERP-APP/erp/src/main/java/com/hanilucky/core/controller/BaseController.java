@@ -50,22 +50,19 @@ public class BaseController<T> {
 	// 新增
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public Result save(@RequestBody T t) {
-		Integer num = baseService.save(t);
-		return new Result(true, "新增成功", num);
+		return new Result(true, "新增成功", baseService.save(t));
 	}
 
 	// 删除
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Result delete(@PathVariable Integer id) {
-		Integer num = baseService.delete(id);
-		return new Result(true, "删除成功", num);
+		return new Result(true, "删除成功", baseService.delete(id));
 	}
 
 	// 修改
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	public Result update(@RequestBody T t) {
-		Integer num = baseService.update(t);
-		return new Result(true, "修改成功", num);
+		return new Result(true, "修改成功", baseService.update(t));
 	}
 
 }

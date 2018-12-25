@@ -103,7 +103,7 @@ public class IndexController {
 			meunTree = jedis.get("menuTree" + user.getUuid());
 		} catch (Exception e) {
 			log.error("============redis异常=============");
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		
 		if (meunTree == null || "".equals(meunTree)) {
@@ -114,7 +114,7 @@ public class IndexController {
 				jedis.set("menuTree" + user.getUuid(), JSON.toJSONString(menu));
 			}catch (Exception e) {
 				log.error("============redis异常=============");
-				e.printStackTrace();
+				// e.printStackTrace();
 			}
 		} else {
 			log.info("============ 从redis中获取菜单树 ============");

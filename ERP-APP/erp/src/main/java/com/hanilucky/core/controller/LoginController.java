@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hanilucky.common.Result;
+import com.hanilucky.config.UserUtil;
 import com.hanilucky.core.service.EmpService;
 import com.hanilucky.core.vo.Emp;
 
@@ -67,6 +68,9 @@ public class LoginController {
 		try {
 			// 调用自定义realm的认证方法(doGetAuthenticationInfo)
 			subject.login(token);
+			Emp user = (Emp) subject.getPrincipal();
+			HttpSession session = request.getSession();
+			session.setAttribute(UserUtil.KEY_USER, user.getName());
 			return new Result(true, "登录成功", null);
 		} catch (AuthenticationException e) {
 			e.printStackTrace();
