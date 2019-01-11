@@ -63,12 +63,12 @@ public class MyRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		log.info("=====================调用了授权方法=====================");
 		Emp user = (Emp) principals.getPrimaryPrincipal(); // 该对象的值在调用doGetAuthenticationInfo的返回值设置
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		// 根据用户id获取菜单列表权限
 		List<Menu> menus = menuService.readEmpMenuByEmpId(user.getUuid());
 		// 查角色
 		List<Role> roles = empRoleService.readEmpRoleByEmpId(user.getUuid());
 		
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		/**
 		 * /menu.** = roles["超级管理员"]
 		 */

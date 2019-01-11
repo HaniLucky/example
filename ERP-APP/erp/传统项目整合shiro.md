@@ -46,7 +46,30 @@
 	</filter-mapping>
 ```
 
+##### 登录方法
 
+```java
+@RequestMapping(value = "/login/shiro", method = RequestMethod.POST)
+	public Result loginShiro(Emp emp, HttpServletRequest request, HttpServletResponse response) {
+		String username = emp.getUsername();
+		String password = emp.getPwd();
+		// 创建token
+		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+		// 获取subject(主题,当前用户的操作类,封装了一系列的操作,应用程序与shiro交互的入口部门)
+		Subject subject = SecurityUtils.getSubject();
+		try {
+			// 调用自定义realm的认证方法(doGetAuthenticationInfo)
+			subject.login(token);
+			Emp user = (Emp) subject.getPrincipal();
+			HttpSession session = request.getSession();
+			session.setAttribute(UserUtil.KEY_USER, user.getName());
+			return new Result(true, "登录成功", null);
+		} catch (AuthenticationException e) {
+			e.printStackTrace();
+			return new Result(false, "登录失败", null);
+		}
+	}
+```
 
 ##### 实现自定义Realm
 
@@ -70,10 +93,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.hanilucky.core.service.EmpRoleService;
 import com.hanilucky.core.service.EmpService;
 import com.hanilucky.core.service.MenuService;
 import com.hanilucky.core.vo.Emp;
 import com.hanilucky.core.vo.Menu;
+import com.hanilucky.core.vo.Role;
 
 /**
  * 自定义realm
@@ -89,6 +114,9 @@ public class MyRealm extends AuthorizingRealm {
 
 	@Autowired
 	private MenuService menuService;
+	
+	@Autowired
+	private EmpRoleService empRoleService;
 
 	private static final Logger log = LoggerFactory.getLogger(MyRealm.class);
 
@@ -111,16 +139,29 @@ public class MyRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		log.info("=====================调用了授权方法=====================");
 		Emp user = (Emp) principals.getPrimaryPrincipal(); // 该对象的值在调用doGetAuthenticationInfo的返回值设置
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		// 根据用户id获取菜单列表权限
 		List<Menu> menus = menuService.readEmpMenuByEmpId(user.getUuid());
 		// 查角色
-		// XXXX
-		// 添加角色
-		// info.addRole(role);
+		List<Role> roles = empRoleService.readEmpRoleByEmpId(user.getUuid());
+		
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		/**
+		 * /menu.** = roles["超级管理员"]
+		 */
+		for (Role role : roles) {
+			// 添加角色
+			info.addRole(role.getName());
+			System.err.println(role.getName());
+		}
+		
+		/**
+		 * /menu.** = perms["菜单设置"]
+		 * /menu/** = perms["菜单设置"]
+		 */
 		// 将菜单菜单添加到授权对象中
 		for (Menu menu : menus) {
 			info.addStringPermission(menu.getMenuname());
+			System.err.println(menu.getMenuname());
 		}
 		return info;
 	}
@@ -157,6 +198,7 @@ public class MyRealm extends AuthorizingRealm {
 	}
 
 }
+
 
 ```
 
@@ -201,8 +243,10 @@ public class MyRealm extends AuthorizingRealm {
 				<!-- 登录接口放开 -->
 				/sso/login/* = anon
 				<!-- 第二组过滤器需要经过第一组的过滤器之后才会起作用 -->
-				<!-- 测试perms 系统中没有这个权限 -->
-				<!-- /dep/**=perms["testPerms"] -->
+				<!-- 没有菜单设置这个权限就会返回错误页 -->
+				<!-- /menu.** = perms["菜单设置"]
+				/menu/** = perms["菜单设置"] -->
+				/menu.** = roles["超级管理员"]
 				<!-- 余下所有页面都需要登录访问 -->
 				/*.html = authc
 				<!-- 余下的所有接口都要认证只有才能访问 -->

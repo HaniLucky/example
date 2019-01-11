@@ -9,7 +9,14 @@ package emum;
  *
  */
 public enum StateEnum {
-	
+	/**
+	 * 枚举的使用场景:代替常量类
+	 * 1.枚举类型的构造方法只能用private 修饰
+	 * 2.常用Api
+	 * 		values()   获取所有实例
+	 * 		valueOf()  根据实例名获取对象
+	 */
+
 	UNCHECKED("0", "未审核"), CHECKED("1", "已审核"), CONFIRMED("2", "已确认"), OVER("3", "已结束");
 
 	private String code;
@@ -25,16 +32,18 @@ public enum StateEnum {
 	public String code() {
 		return code;
 	}
+
 	public String value() {
 		return value;
 	}
-	
-	
-	
-	
+
 	public static void main(String[] args) {
 		System.out.println(StateEnum.UNCHECKED.code());
 		System.out.println(StateEnum.UNCHECKED.value());
+
+		for (StateEnum string : StateEnum.values()) {
+			System.err.println(string);
+		}
 	}
 
 }
