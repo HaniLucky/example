@@ -25,7 +25,7 @@ import redis.clients.jedis.Jedis;
 @RestController
 @RequestMapping(value = "/index")
 public class IndexController {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 
 	@Autowired
@@ -33,6 +33,7 @@ public class IndexController {
 
 	@Autowired
 	private Jedis jedis;
+
 	/**
 	 * 获取菜单树
 	 */
@@ -96,34 +97,36 @@ public class IndexController {
 		// 从shiro中获取主体信息
 		Subject subject = SecurityUtils.getSubject();
 		Emp user = (Emp) subject.getPrincipal();
+		
 		// 从Redis中获取菜单树
 		// 从session中获取用户id
-		String meunTree =  "";
+		String meunTree = "";
 		try {
 			meunTree = jedis.get("menuTree" + user.getUuid());
 		} catch (Exception e) {
 			log.error("============redis异常=============");
 			// e.printStackTrace();
 		}
-		
+
 		if (meunTree == null || "".equals(meunTree)) {
 			log.info("============ 从数据库中查询菜单树 ============");
 			menu = menuService.readMenuByEmpUuid(user.getUuid());
-			// 将查询到的菜单树存到redis中  下次刷新首页不需要再次查库
+			// 将查询到的菜单树存到redis中 下次刷新首页不需要再次查库
 			try {
 				jedis.set("menuTree" + user.getUuid(), JSON.toJSONString(menu));
-			}catch (Exception e) {
+			} catch (Exception e) {
 				log.error("============redis异常=============");
 				// e.printStackTrace();
 			}
 		} else {
 			log.info("============ 从redis中获取菜单树 ============");
-			// 必须使用该方法反序列化  指定泛型
-			menu = JSON.parseObject(meunTree,Menu.class);
+			// 必须使用该方法反序列化 指定泛型
+			menu = JSON.parseObject(meunTree, Menu.class);
 		}
 		return menu;
 	}
 
+	
 	@RequestMapping(value = "/showName/shiro", method = RequestMethod.GET)
 	public Result showNameShiro(HttpServletRequest request) {
 		// Emp user = (Emp) request.getSession().getAttribute("user");
